@@ -1,0 +1,131 @@
+MIME-Version: 1.0
+Date: Mon, 24 Aug 2026 17:18:40 +0300
+Message-ID: <CAJNWGxG4_1VQMsf-c7uEqugt5dL3xje5pokC384b7z2xSr8Cwg@mail.gmail.com>
+Subject: =?UTF-8?Q?Final_Project_Proposal_=E2=80=93_Secure_=26_Explainable_AI=2DP?=
+	=?UTF-8?Q?owered_SOC?=
+From: aviv horesh <avivh852@gmail.com>
+To: andreiko@hit.ac.il
+Content-Type: multipart/alternative; boundary="000000000000b7cfb00659cba940"
+
+--000000000000b7cfb00659cba940
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Andrei,
+
+I would like to propose the following use case for my final project:
+
+*Project Topic: Secure & Explainable AI-Powered SOC*
+
+The goal of the project is to develop a lightweight AI-assisted SOC
+prototype that detects suspicious activity from security telemetry and
+transforms the detection into an interpretable and actionable alert for a
+SOC analyst.
+
+The proposed pipeline will include:
+
+   -
+
+   *Anomaly Detection* =E2=80=93 using machine learning models such as Isol=
+ation
+   Forest and Autoencoder to identify suspicious behavior.
+   -
+
+   *Explainable AI (XAI)* =E2=80=93 providing evidence and feature-level
+   explanations for why an event was classified as anomalous.
+   -
+
+   *MITRE ATT&CK Mapping* =E2=80=93 mapping detected behavior to relevant M=
+ITRE
+   ATT&CK tactics and techniques.
+   -
+
+   *Local LLM (Llama)* =E2=80=93 generating a structured, human-readable SO=
+C
+   analysis based on the detection evidence, XAI results, and MITRE mapping=
+.
+   -
+
+   *Responsible AI / Human-in-the-Loop* =E2=80=93 keeping the AI in an advi=
+sory
+   role while the final security decision remains with the human analyst.
+
+In addition, I would like to evaluate the *security of the AI-assisted SOC
+itself*. I plan to test whether adversarial context, such as
+direct/indirect prompt injection or authority manipulation, can influence
+the LLM's recommendation while the underlying security telemetry remains
+unchanged.
+
+I will then evaluate an evidence-based defense architecture using trust
+separation, evidence validation, and RAI controls, and compare the system's
+behavior *before and after these defenses are applied*.
+
+The main objective is therefore to examine both sides of AI in
+cybersecurity: using AI to support threat detection and SOC analysis, while
+also treating the AI component itself as part of the attack surface that
+must be secured.
+
+The initial implementation will be designed as a *SOC Lite environment*
+that can run locally using Llama without requiring a heavy LLM. If
+appropriate and feasible, NVIDIA Morpheus/accelerated processing can later
+be incorporated as an extension to the pipeline.
+
+The project will evaluate detection performance, explainability, AI attack
+success rates, and the effectiveness of the proposed defense mechanisms.
+
+I would appreciate your feedback and approval regarding this project
+direction.
+
+Best regards,
+Aviv Rom Horesh
+
+--000000000000b7cfb00659cba940
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"rtl"><p style=3D"direction:ltr"><br></p><p style=3D"direction:l=
+tr">Hello Andrei,</p><p style=3D"direction:ltr">I would like to propose the=
+ following use case for my final project:</p><p style=3D"direction:ltr"><st=
+rong>Project Topic: Secure &amp; Explainable AI-Powered SOC</strong></p><p =
+style=3D"direction:ltr">The goal of the project is to develop a lightweight=
+ AI-assisted SOC prototype that detects suspicious activity from security t=
+elemetry and transforms the detection into an interpretable and actionable =
+alert for a SOC analyst.</p><p style=3D"direction:ltr">The proposed pipelin=
+e will include:</p><ul><li><p style=3D"direction:ltr"><strong>Anomaly Detec=
+tion</strong> =E2=80=93 using machine learning models such as Isolation For=
+est and Autoencoder to identify suspicious behavior.</p></li><li><p style=
+=3D"direction:ltr"><strong>Explainable AI (XAI)</strong> =E2=80=93 providin=
+g evidence and feature-level explanations for why an event was classified a=
+s anomalous.</p></li><li><p style=3D"direction:ltr"><strong>MITRE ATT&amp;C=
+K Mapping</strong> =E2=80=93 mapping detected behavior to relevant MITRE AT=
+T&amp;CK tactics and techniques.</p></li><li><p style=3D"direction:ltr"><st=
+rong>Local LLM (Llama)</strong> =E2=80=93 generating a structured, human-re=
+adable SOC analysis based on the detection evidence, XAI results, and MITRE=
+ mapping.</p></li><li><p style=3D"direction:ltr"><strong>Responsible AI / H=
+uman-in-the-Loop</strong> =E2=80=93 keeping the AI in an advisory role whil=
+e the final security decision remains with the human analyst.</p></li></ul>=
+<p style=3D"direction:ltr">In addition, I would like to evaluate the <stron=
+g>security of the AI-assisted SOC itself</strong>. I plan to test whether a=
+dversarial context, such as direct/indirect prompt injection or authority m=
+anipulation, can influence the LLM&#39;s recommendation while the underlyin=
+g security telemetry remains unchanged.</p><p style=3D"direction:ltr">I wil=
+l then evaluate an evidence-based defense architecture using trust separati=
+on, evidence validation, and RAI controls, and compare the system&#39;s beh=
+avior <strong>before and after these defenses are applied</strong>.</p><p s=
+tyle=3D"direction:ltr">The main objective is therefore to examine both side=
+s of AI in cybersecurity: using AI to support threat detection and SOC anal=
+ysis, while also treating the AI component itself as part of the attack sur=
+face that must be secured.</p><p style=3D"direction:ltr">The initial implem=
+entation will be designed as a <strong>SOC Lite environment</strong> that c=
+an run locally using Llama without requiring a heavy LLM. If appropriate an=
+d feasible, NVIDIA Morpheus/accelerated processing can later be incorporate=
+d as an extension to the pipeline.</p><p style=3D"direction:ltr">The projec=
+t will evaluate detection performance, explainability, AI attack success ra=
+tes, and the effectiveness of the proposed defense mechanisms.</p><p style=
+=3D"direction:ltr">I would appreciate your feedback and approval regarding =
+this project direction.</p><p></p><div style=3D"direction:ltr"><span style=
+=3D"background-color:transparent">Best regards,</span></div><div style=3D"d=
+irection:ltr"><span style=3D"background-color:transparent">Aviv Rom Horesh<=
+/span></div><p></p></div>
+
+--000000000000b7cfb00659cba940--

@@ -1,0 +1,48 @@
+# Python virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Environment variables and secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local logs
+*.log
+
+# Trained model files / large model artifacts
+*.pkl
+*.joblib
+*.h5
+*.keras
+*.pt
+*.pth
+*.onnx
+
+# Local LLM / model weights
+*.gguf
+*.bin
+*.safetensors
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Jupyter
+.ipynb_checkpoints/
