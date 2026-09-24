@@ -11,6 +11,29 @@
     "experiments": "experiments",
     "results": "results"
   },
+  "preprocessing": {
+    "categorical_features": [
+      "user",
+      "country",
+      "device",
+      "protocol"
+    ],
+    "numerical_features": [
+      "hour",
+      "failed_attempts",
+      "distance_km",
+      "session_minutes",
+      "bytes_out_mb"
+    ],
+    "excluded_columns": [
+      "event_id",
+      "is_attack"
+    ],
+    "training_strategy": "normal_only",
+    "scaling": "standard",
+    "categorical_encoding": "one_hot",
+    "handle_unknown_categories": "ignore"
+  },
   "detection": {
     "isolation_forest": {
       "enabled": true,

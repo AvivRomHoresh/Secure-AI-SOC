@@ -224,8 +224,8 @@ class distributions, categorical summaries, and numerical EDA plots
 recorded in `docs/datasets/EDA_ANALYSIS.md` and `results/figures/eda/`.
 Feature/evidence policy: preserve original telemetry as evidence;
 `is_attack` is ground truth and `event_id` is traceability metadata,
-neither is a model feature. Encoding, scaling, feature engineering,
-and training-only fitting will be implemented and verified in Phase 2.
+neither is a model feature. Encoding and scaling have now been implemented
+and checked in Phase 2; no additional behavioral features were engineered.
 Splitting: stratified 70/15/15 with random state 42: training 2,772
 (2,660 normal / 112 attack); validation 594 (570 / 24); test 594
 (570 / 24). Both detectors will train on normal-only training rows;
@@ -237,9 +237,9 @@ Scripts and documentation: `src/analysis/split_data.py` and
 Known limitations: synthetic data contain strongly separating features;
 no complete timestamps, so no chronological split. Results must not
 be generalized to real-world SOC performance without further evidence.
-Git: user-reported Phase 1 splitting/documentation commit `67fb746`
-pushed to `main`. Later edits to dataset documentation and this plan
-must be committed and pushed separately.
+Git: Phase 1 splitting/documentation commit `67fb746` was reported
+pushed to `main`; the subsequent Phase 1 documentation/plan update was
+reported pushed as commit `6c59fb1`. Phase 2 changes are pending commit.
 
 Deliverables
 Dataset description.
@@ -251,49 +251,95 @@ Reproducible preprocessing input.
 ---
 6. Phase 2 --- Preprocessing and Feature Engineering
 Goal
-Transform raw telemetry into valid model input while preserving the
-original evidence for later analysis.
-Pipeline
-``` text
-Raw Telemetry
-      ↓
-Parsing
-      ↓
-Validation
-      ↓
-Cleaning
-      ↓
-Feature Engineering
-      ↓
-Encoding / Scaling
-      ↓
-Model Input
+Transform the selected login telemetry into consistent model inputs while
+preserving original security evidence and preventing data leakage.
+
+Implemented pipeline
+```text
+Phase 1 stratified train/validation/test CSVs
+    ↓
+Schema, null, label, and event-ID validation
+    ↓
+Select normal training rows (is_attack == 0)
+    ↓
+Fit OneHotEncoder and StandardScaler on normal training rows only
+    ↓
+Transform normal training, full validation, and full test sets
+    ↓
+Save feature matrices separately from event-ID/label metadata
+    ↓
+Persist fitted preprocessing artifact and feature names
 ```
-Tasks
-[ ] Parse raw data.
-[ ] Handle missing/invalid values.
-[ ] Encode categorical variables where necessary.
-[ ] Scale numerical features where required.
-[ ] Create justified behavioral features.
-[ ] Preserve original event IDs so model results can always be
-traced back to raw evidence.
-[ ] Fit preprocessing transformations only on the appropriate
-training data.
-[ ] Save preprocessing configuration/artifacts.
-[ ] Verify that the same transformation is used during evaluation
-and demo.
-Questions to Answer
-Which preprocessing operations were required?
-Which features were engineered?
-Why was each transformation necessary?
-Which transformations were fitted on training data?
-How is each processed record linked back to the original security
-event?
-Completion Criteria
-A single event must be traceable through:
-``` text
-Raw Event → Processed Features → Model Output → XAI → MITRE → LLM → Human Decision
-```
+
+Tasks and verified progress (24 September 2026)
+[x] Load and parse the existing Phase 1 CSV partitions.
+[x] Validate required columns, missing values, binary labels, and unique
+    event IDs within each partition; fail explicitly on invalid inputs.
+[x] Encode categorical variables: user, country, device, protocol with
+    OneHotEncoder(handle_unknown="ignore").
+[x] Standard-scale numeric fields: hour, failed_attempts, distance_km,
+    session_minutes, bytes_out_mb.
+[ ] Decide whether additional justified behavioral features are necessary;
+    none were engineered in the current implementation. Document any later
+    changes and rerun preprocessing before model evaluation.
+[x] Preserve event_id and is_attack in separate metadata files, excluded
+    from all model features. Preserve original raw evidence separately.
+[x] Fit both transformations exclusively on 2,660 normal training records.
+[x] Save config in config/project_config.json; persist the fitted
+    preprocessor and feature-name manifest locally.
+[x] Verify regenerated validation features match the saved validation
+    matrix in column names, dimensions, and numerical values.
+[ ] Recheck identical preprocessing in the integrated demo when built.
+[ ] Add a reusable automated regression test (recommended before Phase 3).
+
+Implementation and observed results
+- Script: src/preprocessing/prepare_data.py.
+- Inputs: data/processed/splits/{train,validation,test}.csv.
+- Fitting data: 2,660 normal training events (the 112 attack training rows
+  are deliberately not used to fit the unsupervised preprocessing).
+- Outputs: 17 features for 2,660 normal-training, 594 validation, and
+  594 test events. Per-partition feature and metadata CSVs are separate.
+- Artifact: models/preprocessing/preprocessor.joblib; feature-name list:
+  models/preprocessing/feature_names.json. Both are locally generated.
+- Validation confirmed: no event_id/is_attack in feature columns;
+  feature/metadata row alignment and unique IDs in each saved partition;
+  StandardScaler training means and sample count match normal training;
+  OneHotEncoder categories match normal training and unknown-category
+  transformation succeeds; regenerated validation features match saved
+  output in names, shape, and values.
+- Scope of verification: the reported checks do not independently verify
+  cross-partition event-ID disjointness, an integrated demo, or future
+  end-to-end traceability through models, XAI, MITRE, LLM, and human decision.
+- One-hot unknown categories produce an all-zero block for that original
+  categorical field; document and consider this when interpreting anomaly
+  detection and explanations.
+- No imputation or row cleaning was necessary for the current validated
+  dataset; invalid or missing inputs trigger errors rather than being
+  silently repaired.
+- Current implementation creates no additional engineered behavioral
+  features beyond encoding and scaling existing telemetry fields.
+- Synthetic dataset has unusually strong class separation; performance
+  on it cannot establish real-world SOC performance.
+
+Questions to Answer in the Final Report
+Which preprocessing operations were required and why?
+Were additional behavioral features engineered? (Currently: no.)
+Which transformations were fitted, and on which records?
+How are model features linked back to the original security event?
+What are the effects of unseen categorical values and synthetic data?
+
+Phase 2 completion boundary
+Preprocessing implementation and the reported unit-level/manual checks
+are complete. The demo reuse check and downstream event-to-decision
+traceability are deferred to their respective integration phases; do not
+claim these have been tested already. Review whether engineered features
+are justified before freezing the model input schema for Phase 3.
+
+Documentation and Git checkpoint
+See docs/datasets/PREPROCESSING.md for detailed methods and test results.
+Generated data/processed/, data/experimental/, *.joblib and the generated
+feature-name JSON are excluded by .gitignore. Commit and push code,
+configuration, .gitignore, and documentation before proceeding to Phase 3.
 ---
 7. Phase 3 --- Anomaly Detection
 Goal

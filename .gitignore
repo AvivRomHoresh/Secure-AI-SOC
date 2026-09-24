@@ -33,7 +33,7 @@ desktop.ini
 *.pt
 *.pth
 *.onnx
-z
+
 # Local LLM / model weights
 *.gguf
 *.bin
@@ -47,3 +47,9 @@ z
 # Jupyter
 .ipynb_checkpoints/
 /data/raw/
+# Generated datasets and preprocessing outputs
+/data/processed/
+/data/experimental/
+
+# Generated preprocessing metadata
+/models/preprocessing/feature_names.json
