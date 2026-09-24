@@ -117,6 +117,24 @@ For the same selected incident:
 
 ------------------------------------------------------------------------
 
+## Submission clarification (lecturer email, 24 September 2026)
+
+The lecturer confirmed the following **artifact choice**:
+
+1. **Project Summary Form** — required.
+2. **Project Poster** — required; follow the supplied template and poster guidelines. Prepare **PPTX and PDF**, as specified in the poster guidelines.
+3. **Choose one:** Project Presentation **or** Final Project Report. Both may be prepared voluntarily, but both are **not** required by this clarification.
+
+The chosen presentation/report has **no additional mandatory template**. It should professionally cover the problem and objectives, approach/methodology, implementation, results/evaluation, and conclusions.
+
+**Summary-form format discrepancy:** the earlier lecturer email requested Word + PDF, while the supplied form says Word only. Prepare Word + PDF provisionally, and check final submission instructions before upload; do not describe the conflict as resolved.
+
+**Demo:** retain the integrated demonstration as a project implementation/assessment goal from the original project plan; the new artifact clarification does not independently specify a separate demo-file submission format.
+
+Preserve the lecturer's clarification email unchanged in `docs/official/lecturer_approval/` (local filename: `Andrie artification approval`, with its actual extension).
+
+------------------------------------------------------------------------
+
 # 4. Phase 0 --- Project Structure and Reproducibility
 
 ## Goal
@@ -126,9 +144,9 @@ components.
 
 ## Tasks
 
--   [ ] Create the project Git repository.
--   [ ] Create a clear directory structure.
--   [ ] Create a Python virtual environment.
+-   [x] Create the project Git repository and push to GitHub.
+-   [x] Create the top-level directory structure; create planned subdirectories as each phase begins.
+-   [ ] Create a Python virtual environment (next step).
 -   [ ] Create `requirements.txt`.
 -   [ ] Create an initial `README.md`.
 -   [ ] Record Python, library, Ollama/Llama, and operating-system
@@ -138,8 +156,7 @@ components.
 -   [ ] Define a reproducible random seed where applicable.
 -   [ ] Create separate folders for raw data, processed data, models,
     experiments, results, figures, and documentation.
--   [ ] Ensure generated files/models that should not be committed are
-    included in `.gitignore`.
+-   [x] Create an initial `.gitignore` (review it again when adding data, models, and secrets).
 
 ## Proposed Structure
 
@@ -1134,10 +1151,9 @@ Possible future work:
 
 ------------------------------------------------------------------------
 
-# 20. Final Written Report
+# 20. Final Written Report (Option B)
 
-The course requires a written report. The final report should include at
-least:
+**Optional alternative to the Project Presentation:** select this report **or** the presentation as the third submission artifact. No mandatory report template was specified. If selected, use the following proposed structure, covering the lecturer-required content:
 
 ## 1. Introduction
 
@@ -1295,9 +1311,9 @@ instructions.
 
 ------------------------------------------------------------------------
 
-# 21. Final Presentation
+# 21. Final Presentation (Option A)
 
-The course requires a short presentation.
+**Optional alternative to the Final Project Report:** select this presentation **or** the report as the third submission artifact. No mandatory presentation template was specified.
 
 Suggested structure:
 
@@ -1347,55 +1363,32 @@ dependency.
 
 ------------------------------------------------------------------------
 
-# 23. Final Submission Package
+# 23. Final Submission Package — Confirmed Artifact Rules
 
-Based on the course requirements already provided, the required final
-deliverables are:
+The lecturer's clarification confirms **two mandatory artifacts and one choice**:
 
-1.  **Written Report**
-2.  **Short Presentation**
-3.  **Demo of Results**
+- [ ] **Project Summary Form** (mandatory): complete the supplied Word template. Prepare Word and PDF provisionally because the earlier email requests both, although the template says Word only; verify the final upload format.
+- [ ] **Project Poster** (mandatory): follow the supplied B1 poster template and guidelines; deliver **PPTX + PDF**.
+- [ ] **One of the following** (mandatory choice):
+  - [ ] **Option A — Project Presentation:** PDF + PPTX, per the earlier artifact email.
+  - [ ] **Option B — Final Project Report:** PDF + Word, per the earlier artifact email.
 
-For a clean and reproducible project submission, we should additionally
-prepare the supporting project repository/materials used to produce
-those deliverables.
+For the chosen Option A/B, the lecturer requires a clear professional structure covering **problem and objectives, approach/methodology, implementation, results/evaluation, and conclusions**. Neither has an additional mandatory template.
 
-## Proposed Final Package
+The integrated SOC Lite **demo** remains a project implementation/assessment goal. The latest artifact clarification does not establish a separate demo-file upload requirement. Keep reproducibility material, source code, experimental records, figures, and demo backup organized; the precise repository/archive submission procedure remains to be confirmed.
 
-``` text
-FinalProject_AvivRomHoresh/
-│
-├── Report/
-│   └── Final_Report.pdf
-│
-├── Presentation/
-│   └── Final_Presentation.pptx
-│
-├── Demo/
-│   ├── demo_instructions.md
-│   └── backup_results/
-│
-├── Source/
-│   ├── src/
-│   ├── config/
-│   ├── requirements.txt
-│   └── README.md
-│
-├── Results/
-│   ├── detection_metrics/
-│   ├── experiment_results/
-│   └── figures/
-│
-└── Reproducibility/
-    └── RUN_INSTRUCTIONS.md
+## Proposed Working Submission Layout (not an official required folder structure)
+
+```text
+submission/
+├── Summary_Form/         # Word; provisional PDF too
+├── Poster/               # PPTX + PDF
+├── Presentation_or_Report/  # choose one, with its required formats
+├── Demo_Backup/          # if needed for assessment
+└── Reproducibility/      # instructions, code/results references
 ```
 
-**Important:** The written report, short presentation, and demo are the
-known course deliverables. The exact repository/archive upload format
-has not yet been specified in the material currently available to us, so
-we should not claim that the proposed folder package itself is a
-lecturer requirement unless further submission instructions are
-provided.
+**Decision pending:** select Presentation or Report before preparing final artifacts; do not mark both as mandatory.
 
 ------------------------------------------------------------------------
 
@@ -1436,10 +1429,12 @@ provided.
 
 ## Submission
 
--   [ ] Final report completed.
+-   [ ] Project Summary Form completed (verify Word/PDF upload requirement).
+-   [ ] Project Poster completed in PPTX and PDF using the official template.
+-   [ ] Choose either Project Presentation or Final Project Report and complete it in the specified formats.
 -   [ ] Architecture diagram completed.
 -   [ ] Results tables/figures completed.
--   [ ] Presentation completed.
+-   [ ] Chosen Presentation/Report covers objectives, methodology, implementation, results/evaluation, and conclusions.
 -   [ ] Demo tested.
 -   [ ] Demo backup prepared.
 -   [ ] README completed.
@@ -1487,9 +1482,9 @@ Do not build all components simultaneously.
           ↓
 17. Integrated Demo
           ↓
-18. Final Report
+18. Summary Form + Poster
           ↓
-19. Presentation
+19. Chosen Presentation OR Final Report
           ↓
 20. Optional Morpheus Extension
 ```
@@ -1538,8 +1533,8 @@ Integrated SOC Lite demo works end-to-end.
 
 ## Milestone 9 --- Submission Ready
 
-Report, presentation, demo, results and reproducibility materials are
-finalized.
+Mandatory Summary Form and Poster, the chosen Presentation or Report,
+demo readiness, results, and reproducibility materials are finalized.
 
 ------------------------------------------------------------------------
 
@@ -1557,6 +1552,6 @@ support the following chain:
 > controls, and quantitatively compares the system before and after
 > those controls.**
 
-The final report must then use the measured results to answer the
-approved central research question rather than merely describing the
+The selected final Presentation or Report must use measured results to answer
+the approved central research question rather than merely describing the
 software implementation.

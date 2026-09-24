@@ -89,7 +89,7 @@ The XAI/evidence layer should help explain:
 -   Where uncertainty or disagreement exists.
 
 Model explanations and original security evidence should remain
-distinguishishable.
+distinguishable.
 
 ------------------------------------------------------------------------
 
@@ -376,21 +376,19 @@ and an evaluation of the resulting behavior.
 
 ------------------------------------------------------------------------
 
-## 18. Known Final Deliverables
+## 18. Confirmed Final Submission Artifacts
 
-Based on the project instructions currently available, the final project
-requires:
+Per the lecturer's email clarification (24 September 2026), the submission consists of:
 
-1.  **Written Report**
-2.  **Short Presentation**
-3.  **Demo of Results**
+1. **Project Summary Form** — mandatory; use the supplied Word template. The earlier email requested Word + PDF, while the template states Word only. Prepare both provisionally and verify the final upload format.
+2. **Project Poster** — mandatory; use the official poster template and guidelines. The poster guidelines specify **PPTX + PDF**.
+3. **Choose ONE:** **Project Presentation** (PDF + PPTX) **OR** **Final Project Report** (PDF + Word), as listed in the earlier artifact email. Neither has an additional mandatory template.
 
-The repository, source code, experiment records, configuration, results,
-and reproducibility documentation will be maintained as supporting
-project materials.
+The selected Presentation/Report should professionally cover the **problem and objectives, approach/methodology, implementation, results/evaluation, and conclusions**.
 
-Additional submission requirements received later from the lecturer must
-be added to the project documentation.
+The integrated SOC Lite **demo** remains part of the implementation/assessment plan; the latest artifact email does not specify a separate demo-file submission. Source code, experiments, results, and reproducibility documentation remain supporting project materials. The exact repository/archive submission procedure is not yet confirmed.
+
+The lecturer's original and clarification emails and the official templates/guidelines must be preserved unchanged under `docs/official/`.
 
 ------------------------------------------------------------------------
 
