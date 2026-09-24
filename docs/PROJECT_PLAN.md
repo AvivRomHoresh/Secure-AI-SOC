@@ -146,16 +146,13 @@ components.
 
 -   [x] Create the project Git repository and push to GitHub.
 -   [x] Create the top-level directory structure; create planned subdirectories as each phase begins.
--   [ ] Create a Python virtual environment (next step).
--   [ ] Create `requirements.txt`.
--   [ ] Create an initial `README.md`.
--   [ ] Record Python, library, Ollama/Llama, and operating-system
-    versions.
--   [ ] Define configuration files instead of hard-coding thresholds and
-    paths.
--   [ ] Define a reproducible random seed where applicable.
--   [ ] Create separate folders for raw data, processed data, models,
-    experiments, results, figures, and documentation.
+-   [x] Create and activate a Python 3.12.10 virtual environment (`.venv`); verify `where python`.
+-   [x] Create `requirements.txt` with pinned initial NumPy, pandas, and scikit-learn versions; verify `pip check` and run an Isolation Forest smoke test.
+-   [x] Create an initial `README.md` and `docs/SETUP.md`.
+-   [~] Record environment versions: Python 3.12.10, NumPy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1 and Windows documented. Record the precise Windows version and add Ollama/Llama versions when installed.
+-   [x] Create `config/project_config.json` with initial relative paths and configurable detection settings; finalize thresholds only after dataset analysis.
+-   [x] Set initial random seed 42 in project configuration; apply and verify across future training components.
+-   [~] Create top-level `data`, `models`, `experiments`, `results`, and `docs`; create the planned `raw`, `processed`, `experimental`, `figures`, and experiment-condition subfolders as the relevant phases begin.
 -   [x] Create an initial `.gitignore` (review it again when adding data, models, and secrets).
 
 ## Proposed Structure
@@ -200,6 +197,14 @@ secure-ai-soc/
     ├── report/
     └── presentation/
 ```
+
+## Phase 0 Progress (24 September 2026)
+
+- Repository and documentation updates pushed to `main`; latest user-reported commit: `99e1faa`.
+- Virtual environment active and ignored by Git; `pip check` reported no broken requirements.
+- Isolation Forest smoke test passed (synthetic toy inputs only; not experimental results).
+- `README.md`, `docs/SETUP.md`, pinned `requirements.txt`, and `config/project_config.json` committed.
+- **Remaining verification before formally closing Phase 0:** check clean `git status`, run a fresh-clone installation test when feasible, and record the precise Windows version. Ollama/Llama versions and deeper subfolders are intentionally deferred until needed.
 
 ## Completion Criteria
 
