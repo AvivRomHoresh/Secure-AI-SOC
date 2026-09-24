@@ -345,11 +345,60 @@ configuration, .gitignore, and documentation before proceeding to Phase 3.
 Goal
 Implement the approved two-model anomaly-detection layer.
 Model A --- Isolation Forest
-[ ] Train/configure Isolation Forest.
-[ ] Document important hyperparameters.
-[ ] Generate anomaly scores.
-[ ] Define the decision threshold.
-[ ] Evaluate predictions.
+[x] Train/configure Isolation Forest.
+[x] Document important hyperparameters.
+[x] Generate anomaly scores.
+[x] Define the decision threshold using validation data.
+[x] Evaluate predictions on validation data.
+[ ] Evaluate the frozen model and threshold on the held-out test set
+    after both detectors have completed development.
+
+Isolation Forest Progress (25 September 2026)
+Status: Model training, validation scoring, threshold selection, and
+experiment documentation completed. Final held-out test evaluation is pending.
+
+Implementation and reproducibility:
+- Training: 2,660 normal events; 17 preprocessed input features.
+- Isolation Forest: 100 estimators, random seed 42,
+  contamination="auto", n_jobs=-1.
+- Training script: `src/detection/train_isolation_forest.py`.
+- Scoring script: `src/detection/evaluate_isolation_forest.py`.
+- Threshold script: `src/detection/select_isolation_forest_threshold.py`.
+- Scoring convention: anomaly_score = -model.decision_function(X);
+  higher scores indicate greater abnormality.
+- Model: `models/isolation_forest/isolation_forest.joblib`.
+- Feature schema: `models/isolation_forest/feature_names.json`.
+- Validation scores: `results/isolation_forest/validation_scores.csv`,
+  linked to event_id and is_attack for evaluation only.
+- Threshold and metrics: `results/isolation_forest/threshold_selection.json`.
+- Detailed documentation: `docs/models/ISOLATION_FOREST.md`.
+
+Validation observations:
+- Validation events: 594 (570 normal; 24 attack).
+- Normal anomaly scores: mean -0.0100; range -0.0932 to 0.1513.
+- Attack anomaly scores: mean 0.1881; range 0.1640 to 0.2102.
+- Selection method: maximize validation F1 across distinct observed
+  scores, including an all-normal candidate; break ties by selecting
+  the highest threshold. Predict attack if anomaly_score >= threshold.
+- Selected threshold: 0.164030 (rounded for display; full precision
+  retained in the saved JSON).
+- Validation precision: 1.0000; recall: 1.0000; F1: 1.0000.
+- Validation confusion matrix: TN=570, FP=0, FN=0, TP=24.
+
+Interpretation and limitations:
+The observed validation classes are completely separated, but the
+synthetic dataset contains strongly distinguishable attack features.
+Only 24 attacks are present in validation, and the threshold was
+optimized using validation labels. These metrics are not an independent
+estimate of generalization or evidence of real-world SOC performance.
+The held-out test set has not been used for model selection or evaluation.
+Do not tune the saved threshold using future test results.
+
+Git checkpoint:
+This Phase 3 update and its associated scripts/documentation are to be
+committed and pushed before starting the Autoencoder. Do not mark
+Phase 3 complete until both models and their comparison are evaluated.
+
 Model B --- Autoencoder
 [ ] Define the Autoencoder architecture.
 [ ] Train it on the appropriate training data.

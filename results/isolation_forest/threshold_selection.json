@@ -1,0 +1,17 @@
+{
+    "model": "Isolation Forest",
+    "selection_dataset": "validation",
+    "selection_metric": "F1",
+    "prediction_rule": "anomaly_score >= threshold",
+    "tie_breaking_rule": "highest_threshold",
+    "threshold": 0.164029646520074,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": {
+        "TN": 570,
+        "FP": 0,
+        "FN": 0,
+        "TP": 24
+    }
+}
