@@ -33,7 +33,7 @@ desktop.ini
 *.pt
 *.pth
 *.onnx
-
+z
 # Local LLM / model weights
 *.gguf
 *.bin
@@ -45,4 +45,5 @@ desktop.ini
 ~$*
 
 # Jupyter
-.ipynb_checkpoints//data/raw/*.csv
+.ipynb_checkpoints/
+/data/raw/
