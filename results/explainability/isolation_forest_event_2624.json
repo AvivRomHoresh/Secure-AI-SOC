@@ -1,0 +1,79 @@
+{
+  "event_id": 2624,
+  "actual_label": 1,
+  "method": "one-original-field-at-a-time normal-training reference replacement",
+  "interpretation": "Positive score drop: replacing the field reduced anomaly score; negative: replacement increased it. Diagnostic sensitivity, not causal feature attribution.",
+  "baseline_anomaly_score": 0.18744487908983476,
+  "feature_sensitivity": [
+    {
+      "field": "bytes_out_mb",
+      "replacement": "normal-training median (transformed scale)",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.14029469554441198,
+      "score_drop_when_replaced": 0.047150183545422775
+    },
+    {
+      "field": "failed_attempts",
+      "replacement": "normal-training median (transformed scale)",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.14723403190311257,
+      "score_drop_when_replaced": 0.04021084718672219
+    },
+    {
+      "field": "distance_km",
+      "replacement": "normal-training median (transformed scale)",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.15001167593645248,
+      "score_drop_when_replaced": 0.03743320315338228
+    },
+    {
+      "field": "device",
+      "replacement": "most frequent normal-training encoded category",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.17481315129822905,
+      "score_drop_when_replaced": 0.012631727791605707
+    },
+    {
+      "field": "protocol",
+      "replacement": "most frequent normal-training encoded category",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.1778588921203419,
+      "score_drop_when_replaced": 0.009585986969492866
+    },
+    {
+      "field": "hour",
+      "replacement": "normal-training median (transformed scale)",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.17990505962390801,
+      "score_drop_when_replaced": 0.007539819465926745
+    },
+    {
+      "field": "session_minutes",
+      "replacement": "normal-training median (transformed scale)",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.1799563013149077,
+      "score_drop_when_replaced": 0.007488577774927063
+    },
+    {
+      "field": "user",
+      "replacement": "most frequent normal-training encoded category",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.18073914062602803,
+      "score_drop_when_replaced": 0.006705738463806732
+    },
+    {
+      "field": "country",
+      "replacement": "most frequent normal-training encoded category",
+      "original_anomaly_score": 0.18744487908983476,
+      "replaced_anomaly_score": 0.18744487908983476,
+      "score_drop_when_replaced": 0.0
+    }
+  ],
+  "limitations": [
+    "Reference replacements may create unrealistic feature combinations.",
+    "Results depend on the chosen normal-training reference values.",
+    "Correlated feature interactions and causal importance are not measured.",
+    "Unknown categorical values are encoded as all zeros by the preprocessor.",
+    "Do not use test labels or these diagnostics to retune the frozen models or thresholds."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "event_id": 3216,
+  "is_attack": 0,
+  "model": "autoencoder",
+  "explanation_type": "per-feature squared reconstruction error grouped by original field",
+  "limitations": "Describes reconstruction mismatch in transformed feature space; not causal importance or security proof.",
+  "reconstruction_mse": 0.1510092973004497,
+  "transformed_feature_count": 17,
+  "grouped_squared_error": {
+    "device": 1.3085412718474934,
+    "user": 1.003590099655612,
+    "protocol": 0.21188863236357486,
+    "distance_km": 0.03796905990166732,
+    "failed_attempts": 0.0019102945863305753,
+    "hour": 0.001743812041492202,
+    "bytes_out_mb": 0.0007502962023711217,
+    "session_minutes": 0.0007204726880077806,
+    "country": 4.411482109590557e-05
+  },
+  "per_transformed_feature": {
+    "categorical__user_admin01": 0.8001192953447807,
+    "categorical__user_analyst01": 0.05557526411312523,
+    "categorical__user_analyst02": 0.044821405566643116,
+    "categorical__user_developer01": 0.05903509608070505,
+    "categorical__user_finance01": 0.04403903855035789,
+    "categorical__country_IL": 4.411482109590557e-05,
+    "categorical__device_admin_workstation": 0.8117225558496135,
+    "categorical__device_developer_workstation": 0.05948991472730119,
+    "categorical__device_managed_laptop": 0.4373288012705788,
+    "categorical__protocol_HTTPS": 0.12575473971320883,
+    "categorical__protocol_SSH": 0.0056581059180171875,
+    "categorical__protocol_VPN": 0.08047578673234886,
+    "numerical__hour": 0.001743812041492202,
+    "numerical__failed_attempts": 0.0019102945863305753,
+    "numerical__distance_km": 0.03796905990166732,
+    "numerical__session_minutes": 0.0007204726880077806,
+    "numerical__bytes_out_mb": 0.0007502962023711217
+  }
+}

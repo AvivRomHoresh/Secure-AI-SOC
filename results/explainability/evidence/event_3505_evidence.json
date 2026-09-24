@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "event_id": 3505,
+  "raw_evidence": {
+    "user": "analyst01",
+    "country": "SG",
+    "device": "mobile",
+    "protocol": "HTTPS",
+    "hour": 4,
+    "failed_attempts": 13,
+    "distance_km": 5844.112667568976,
+    "session_minutes": 15.156077515170344,
+    "bytes_out_mb": 123.77036665139734
+  },
+  "detection": {
+    "isolation_forest": {
+      "anomaly_score": 0.1605573909591073,
+      "validation_selected_threshold": 0.164029646520074,
+      "prediction": "normal"
+    },
+    "autoencoder": {
+      "reconstruction_mse": 25444.78029118912,
+      "validation_selected_threshold": 678.0178934710984,
+      "prediction": "anomaly"
+    },
+    "models_agree": false
+  },
+  "explanations": {
+    "autoencoder": {
+      "method": "per-feature squared reconstruction error grouped by original field",
+      "grouped_squared_reconstruction_error": {
+        "distance_km": 411339.89910733374,
+        "hour": 7632.985558417365,
+        "session_minutes": 7295.159734850809,
+        "bytes_out_mb": 4105.158850835389,
+        "failed_attempts": 2148.145754140948,
+        "user": 14.992595098619107,
+        "protocol": 12.882627899735919,
+        "device": 10.70333312288694,
+        "country": 1.3373885155019072
+      },
+      "interpretation": "Describes reconstruction mismatch in transformed feature space; not causal importance or security proof."
+    },
+    "isolation_forest": {
+      "method": "one-original-field-at-a-time normal-training reference replacement",
+      "feature_sensitivity": [
+        {
+          "field": "failed_attempts",
+          "replacement": "normal-training median (transformed scale)",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.10494148476955911,
+          "score_drop_when_replaced": 0.05561590618954826
+        },
+        {
+          "field": "bytes_out_mb",
+          "replacement": "normal-training median (transformed scale)",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.11017915056112071,
+          "score_drop_when_replaced": 0.05037824039798666
+        },
+        {
+          "field": "distance_km",
+          "replacement": "normal-training median (transformed scale)",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.12280888648525412,
+          "score_drop_when_replaced": 0.03774850447385325
+        },
+        {
+          "field": "hour",
+          "replacement": "normal-training median (transformed scale)",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.14464633595320542,
+          "score_drop_when_replaced": 0.015911055005901953
+        },
+        {
+          "field": "device",
+          "replacement": "most frequent normal-training encoded category",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.14808383074061415,
+          "score_drop_when_replaced": 0.012473560218493218
+        },
+        {
+          "field": "session_minutes",
+          "replacement": "normal-training median (transformed scale)",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.15966455097509324,
+          "score_drop_when_replaced": 0.0008928399840141266
+        },
+        {
+          "field": "user",
+          "replacement": "most frequent normal-training encoded category",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.16055739095910737,
+          "score_drop_when_replaced": 0.0
+        },
+        {
+          "field": "country",
+          "replacement": "most frequent normal-training encoded category",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.16055739095910737,
+          "score_drop_when_replaced": 0.0
+        },
+        {
+          "field": "protocol",
+          "replacement": "most frequent normal-training encoded category",
+          "original_anomaly_score": 0.16055739095910737,
+          "replaced_anomaly_score": 0.16055739095910737,
+          "score_drop_when_replaced": 0.0
+        }
+      ],
+      "interpretation": "Positive score drop: replacing the field reduced anomaly score; negative: replacement increased it. Diagnostic sensitivity, not causal feature attribution.",
+      "limitations": [
+        "Reference replacements may create unrealistic feature combinations.",
+        "Results depend on the chosen normal-training reference values.",
+        "Correlated feature interactions and causal importance are not measured.",
+        "Unknown categorical values are encoded as all zeros by the preprocessor.",
+        "Do not use test labels or these diagnostics to retune the frozen models or thresholds."
+      ]
+    }
+  },
+  "provenance": {
+    "raw_event": "data/processed/splits/test.csv",
+    "frozen_predictions": "results/detection_comparison/test_predictions.csv",
+    "autoencoder_explanation": "results/explainability/autoencoder_event_3505.json",
+    "isolation_forest_explanation": "results/explainability/isolation_forest_event_3505.json",
+    "thresholds": "validation-selected, unchanged after held-out test evaluation"
+  },
+  "analyst_notice": "Scores and explanation diagnostics are not proof of an attack. Review original evidence independently.",
+  "mitre_mapping": null,
+  "llm_recommendation": null,
+  "human_decision": null
+}

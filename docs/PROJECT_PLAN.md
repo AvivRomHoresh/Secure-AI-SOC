@@ -533,16 +533,40 @@ Use per-feature reconstruction error or another suitable
 reconstruction-based explanation to show which features contributed most
 strongly to the anomaly.
 Tasks
-[ ] Select and justify the XAI method for each model.
-[ ] Produce event-level explanations.
-[ ] Preserve actual security evidence alongside model explanations.
-[ ] Rank or identify important anomalous features.
-[ ] Distinguish model explanation from raw security
+[x] Select and justify a diagnostic explanation method for each model.
+[x] Produce event-level explanations for three representative cases.
+[x] Preserve actual security evidence alongside model explanations.
+[x] Identify prominent reconstruction-error and sensitivity fields in tested cases.
+[x] Distinguish model explanation from raw security
 evidence.
-[ ] Create a structured evidence object that later components can
+[x] Create a structured evidence object that later components can
 consume.
 [ ] Test explanations on normal, true-positive, false-positive, and
-model-disagreement cases.
+model-disagreement cases. (Normal, true-positive, and disagreement
+cases tested; no observed false positives exist in the held-out test set.)
+
+Phase 4 progress — XAI case-study checkpoint
+- Implemented src/explainability/explain_autoencoder.py using grouped
+  squared reconstruction errors over the transformed 17-feature space.
+- Implemented src/explainability/explain_isolation_forest.py using
+  one-original-field reference-replacement score sensitivity. This is
+  not SHAP or causal feature attribution.
+- Implemented src/explainability/build_evidence.py to preserve nine raw
+  fields, frozen detector scores and thresholds, predictions, agreement,
+  model-specific explanations, provenance, and downstream null fields.
+  Ground truth is intentionally excluded from operational evidence.
+- Validated three cases: normal event 3216 (both normal), attack 2624
+  (both anomalous), and attack 3505 (model disagreement; Isolation
+  Forest false negative). Saved three explanations per method and three
+  structured evidence JSON examples under results/explainability/.
+- See docs/models/XAI_ANALYSIS.md for exact findings, interpretation,
+  reproduction steps, and methodological limitations.
+- Outstanding: no false positives occurred in the held-out test set,
+  so a false-positive explanation has not been tested; broader
+  explanation validation and optional figures remain open.
+- Do not interpret case-study explanation rankings as causal proof or
+  use held-out test labels to retune the frozen detectors.
+
 Example Structured Evidence
 ``` json
 {
