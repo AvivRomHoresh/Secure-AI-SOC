@@ -67,6 +67,29 @@ Each version-1.0 object preserves nine raw telemetry fields, the two frozen mode
 6. Three selected cases demonstrate functionality, not broad explanation fidelity or stability. Additional consistency checks and an optional visualization remain useful before claiming full Phase 4 validation.
 7. The scripts' CLI displays offline `Actual label` for research diagnostics; this label must not enter the operational evidence object or later LLM input.
 
+## Automated evidence-integrity tests
+
+After generating the three case-study evidence objects, four automated
+`unittest` checks passed locally (`Ran 4 tests ... OK`):
+
+- `test_explanations_cover_original_fields`: explanation field groups cover the original telemetry schema.
+- `test_no_ground_truth_or_premature_decisions`: operational evidence excludes the true attack label and does not populate later MITRE/LLM/human decisions.
+- `test_raw_fields_match_original_events`: stored raw evidence matches the source test events.
+- `test_saved_records_match_frozen_predictions`: saved detection records match the frozen test predictions.
+
+Run from the repository root:
+
+```cmd
+python -m unittest discover -s tests -p "test_evidence.py" -v
+```
+
+These tests establish **structural integrity and consistency for the three
+selected records**, not broad explanation fidelity, robustness, causal
+validity, or security of future downstream components. No false positives
+were observed on the held-out test set, so a false-positive explanation
+was not evaluated. The test file should be committed alongside this
+checkpoint.
+
 ## Reproduction
 
 From the repository root, with the original frozen models and local preprocessed data available:

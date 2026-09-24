@@ -561,9 +561,15 @@ Phase 4 progress — XAI case-study checkpoint
   structured evidence JSON examples under results/explainability/.
 - See docs/models/XAI_ANALYSIS.md for exact findings, interpretation,
   reproduction steps, and methodological limitations.
+- Automated evidence-integrity checkpoint: four unittest checks passed
+  (python -m unittest discover -s tests -p "test_evidence.py" -v).
+  Checks cover explanation field coverage, absence of ground truth and
+  premature decisions, preservation of raw fields, and consistency with
+  frozen predictions across the three saved case-study records.
 - Outstanding: no false positives occurred in the held-out test set,
-  so a false-positive explanation has not been tested; broader
-  explanation validation and optional figures remain open.
+  so a false-positive explanation has not been tested. The four tests
+  validate evidence integrity, not explanation fidelity or stability;
+  broader explanation validation and optional figures remain future work.
 - Do not interpret case-study explanation rankings as causal proof or
   use held-out test labels to retune the frozen detectors.
 
