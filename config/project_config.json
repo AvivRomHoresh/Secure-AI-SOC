@@ -1,0 +1,32 @@
+{
+  "project": {
+    "name": "Secure & Explainable AI-Powered SOC",
+    "random_seed": 42
+  },
+  "paths": {
+    "raw_data": "data/raw",
+    "processed_data": "data/processed",
+    "experimental_data": "data/experimental",
+    "models": "models",
+    "experiments": "experiments",
+    "results": "results"
+  },
+  "detection": {
+    "isolation_forest": {
+      "enabled": true,
+      "n_estimators": 100,
+      "random_state": 42
+    },
+    "autoencoder": {
+      "enabled": true,
+      "random_seed": 42
+    }
+  },
+  "experiment": {
+    "conditions": [
+      "baseline",
+      "adversarial",
+      "defended"
+    ]
+  }
+}
