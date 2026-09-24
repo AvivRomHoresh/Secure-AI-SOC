@@ -392,14 +392,15 @@ synthetic dataset contains strongly distinguishable attack features.
 Only 24 attacks are present in validation, and the threshold was
 optimized using validation labels. These metrics are not an independent
 estimate of generalization or evidence of real-world SOC performance.
-The held-out test set has not been used for model selection or evaluation.
+The held-out test set was later evaluated once with the frozen model
+and validation-selected threshold; see the model comparison below.
 Do not tune the saved threshold using future test results.
 
 Git checkpoint:
 Isolation Forest implementation, validation results, and documentation
 were committed and pushed to main as commit 1003b46. Do not mark
 Phase 3 complete until both frozen models are evaluated and compared
-on the held-out test set.
+on the held-out test set. This requirement has now been met.
 
 Model B --- Autoencoder
 [x] Define the Autoencoder architecture.
@@ -409,11 +410,12 @@ Model B --- Autoencoder
 [x] Evaluate predictions on validation data.
 [x] Save the trained model and training metadata locally.
 [x] Document the model and its validation results.
-[ ] Evaluate the frozen model and threshold on the held-out test set.
+[x] Evaluate the frozen model and threshold on the held-out test set.
 
 Autoencoder Progress (25 September 2026)
 Status: Training, validation scoring, threshold selection, and model
- documentation completed. Independent test evaluation is pending.
+ documentation completed. Held-out test evaluation completed without
+ post-test tuning.
 
 Implementation and reproducibility:
 - Training: 2,660 normal-only events with 17 preprocessed features.
@@ -451,39 +453,55 @@ so these metrics are not an independent generalization estimate.
 Do not change the selected threshold in response to held-out test results.
 
 Git checkpoint:
-Commit and push Autoencoder scripts, documentation, and reproducible
-small result files before beginning final held-out evaluation.
-Check `.gitignore` and staged files so generated model binaries and
-sensitive or unnecessarily large data are not committed.
+Autoencoder training and validation scripts, documentation, and small
+reproducible result files were committed and pushed as 5eecd10.
+Generated model binaries remain local and excluded from version control.
 
 Model Comparison / Aggregation
-For every event, preserve both outputs separately.
-Example:
-``` text
-Event ID: 184
+Status: [x] Completed for frozen detectors on the held-out test partition.
 
-Isolation Forest
-Prediction: Anomaly
-Score: ...
+Held-out test (594 events: 570 normal, 24 attack):
+- Isolation Forest (threshold 0.164029646520074): precision 1.0000,
+  recall 0.9583, F1 0.9787; TN=570, FP=0, FN=1, TP=23;
+  FPR=0, FNR=0.0417.
+- Autoencoder (threshold 678.0178934710984): precision 1.0000,
+  recall 1.0000, F1 1.0000; TN=570, FP=0, FN=0, TP=24;
+  FPR=0, FNR=0.
+- Binary decision agreement: 593/594 (99.83%); one disagreement.
+- Event 3505 (labeled attack): Isolation Forest score 0.160557
+  and predicted normal; Autoencoder MSE 25444.780291 and predicted
+  attack. Original event: analyst01, SG, mobile, HTTPS, hour 4,
+  13 failed attempts, distance 5844.112668 km, session 15.156078
+  minutes, outgoing 123.770367 MB.
+- Reproducibility: `src/detection/evaluate_detectors_test.py`;
+  `results/detection_comparison/test_metrics.json` and
+  `results/detection_comparison/test_predictions.csv`.
+- Detailed findings: `docs/models/DETECTION_COMPARISON.md`.
 
-Autoencoder
-Prediction: Anomaly
-Reconstruction Error: ...
+Interpretation: The Autoencoder identified the one labeled attack
+missed by Isolation Forest in this held-out synthetic partition.
+The observed features alone do not establish causal feature attribution;
+that analysis is reserved for the XAI/evidence phase. Scores are on
+incompatible scales and must not be directly compared.
 
-Models Agree: Yes
-```
+Limitations: This dataset is synthetic and strongly separable; only
+24 attacks are present in the test partition. Random splitting may
+include the same users across partitions. Do not generalize the high
+metrics to operational security telemetry, and do not tune either
+model or threshold after observing the held-out test results.
+
 Do not invent a "confidence" score unless its definition is
 mathematically specified and justified.
 Required Metrics
 At minimum, where ground truth supports them:
-[ ] Precision
-[ ] Recall
-[ ] F1-score
-[ ] False Positive Rate
-[ ] False Negative Rate / missed attacks
-[ ] Confusion matrix
-[ ] Number/rate of anomalies detected
-[ ] Model agreement/disagreement
+[x] Precision
+[x] Recall
+[x] F1-score
+[x] False Positive Rate
+[x] False Negative Rate / missed attacks
+[x] Confusion matrix
+[x] Number/rate of anomalies detected
+[x] Model agreement/disagreement
 Additional metrics may be added if justified.
 Questions to Answer
 How does each detector work?
@@ -1311,8 +1329,9 @@ complete, do not start the optional extension.
 Milestone 1 --- Data Ready
 Dataset, ground truth, EDA, preprocessing and feature definitions are
 complete.
-Milestone 2 --- Detection Ready
-Isolation Forest and Autoencoder are implemented and evaluated.
+Milestone 2 --- Detection Ready [COMPLETE]
+Isolation Forest and Autoencoder are implemented and evaluated on
+the held-out synthetic test partition with frozen thresholds.
 Milestone 3 --- Explainable SOC Core
 Detection + XAI/evidence + MITRE mapping work end-to-end.
 Milestone 4 --- AI-Assisted SOC

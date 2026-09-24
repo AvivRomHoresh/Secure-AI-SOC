@@ -1,0 +1,50 @@
+{
+  "dataset": "held_out_test",
+  "total_events": 594,
+  "normal_events": 570,
+  "attack_events": 24,
+  "threshold_source": "validation_only_frozen",
+  "thresholds": {
+    "isolation_forest": 0.164029646520074,
+    "autoencoder": 678.0178934710984
+  },
+  "isolation_forest": {
+    "precision": 1.0,
+    "recall": 0.9583333333333334,
+    "f1": 0.9787234042553191,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.041666666666666664,
+    "predicted_anomalies": 23,
+    "predicted_anomaly_rate": 0.03872053872053872,
+    "confusion_matrix": {
+      "tn": 570,
+      "fp": 0,
+      "fn": 1,
+      "tp": 23
+    }
+  },
+  "autoencoder": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "predicted_anomalies": 24,
+    "predicted_anomaly_rate": 0.04040404040404041,
+    "confusion_matrix": {
+      "tn": 570,
+      "fp": 0,
+      "fn": 0,
+      "tp": 24
+    }
+  },
+  "model_agreement": {
+    "agree_count": 593,
+    "disagree_count": 1,
+    "agreement_rate": 0.9983164983164983,
+    "both_anomaly": 23,
+    "both_normal": 570,
+    "isolation_forest_only": 0,
+    "autoencoder_only": 1
+  }
+}
