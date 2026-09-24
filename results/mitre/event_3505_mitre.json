@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "event_id": 3505,
+  "mapping_status": "insufficient_evidence",
+  "candidate_techniques": [
+    {
+      "technique_id": "T1110",
+      "technique_name": "Brute Force",
+      "tactic_id": "TA0006",
+      "tactic_name": "Credential Access",
+      "assessment": "possible_indicator_not_confirmed",
+      "observed_fields": {
+        "failed_attempts": 13
+      },
+      "rationale": "Recorded failure count meets the exploratory screening rule; the generator does not establish an observation window or independently verified authentication-attempt sequence.",
+      "missing_evidence": [
+        "confirmed observation/aggregation window",
+        "timestamped authentication failures",
+        "source identifier and authentication logs"
+      ]
+    }
+  ],
+  "unmapped_observations": [
+    "country",
+    "device",
+    "hour",
+    "distance_km",
+    "session_minutes",
+    "bytes_out_mb",
+    "protocol"
+  ],
+  "rationale": "Recorded failure count meets the exploratory screening rule; the generator does not establish an observation window or independently verified authentication-attempt sequence.",
+  "rule_version": "mitre-t1110-screen-v0.1",
+  "screening_threshold": 5,
+  "screening_threshold_scope": "exploratory_synthetic_only",
+  "llm_generated": false
+}

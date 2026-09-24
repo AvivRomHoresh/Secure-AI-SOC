@@ -617,15 +617,34 @@ evidence.
 Do not create unsupported mappings simply because an event has a high
 anomaly score.
 Tasks
-[ ] Define which behaviors can actually be inferred from the
+[x] Define which behaviors can actually be inferred from the
 selected telemetry.
-[ ] Define mapping logic for supported behaviors.
-[ ] Document the evidence required for every supported mapping.
-[ ] Map behavior to tactic/technique/sub-technique only where
-justified.
-[ ] Support an "insufficient evidence / no mapping" result.
-[ ] Keep the mapping result separate from the LLM.
-[ ] Store mapping rationale/evidence.
+[x] Define mapping logic for supported behaviors.
+[x] Document the evidence required for every supported mapping.
+[x] Map behavior to tactic/technique/sub-technique only where
+justified (candidate T1110 / TA0006 only; never confirmed).
+[x] Support an "insufficient evidence / no mapping" result.
+[x] Keep the mapping result separate from the LLM.
+[x] Store mapping rationale/evidence.
+Phase 5 validation checkpoint
+- Implemented deterministic, conservative screening in src/mitre/map_evidence.py.
+- Exploratory synthetic-data threshold: failed_attempts >= 5 creates a possible
+  T1110 (Brute Force) / TA0006 (Credential Access) candidate, always marked
+  insufficient_evidence. Below threshold: no_mapping; this does not imply benign.
+- The telemetry lacks an observation window, timestamped failure sequence and
+  independent source/authentication logs. No technique is asserted as confirmed.
+- Results: event 3216 -> no_mapping; events 2624 and 3505 ->
+  insufficient_evidence with a T1110 candidate. All three JSON records saved
+  under results/mitre/.
+- Four automated unit tests passed: threshold boundaries/missing evidence,
+  invalid inputs, independence from model scores/ground truth, and deterministic
+  behavior without input mutation.
+- Documentation: docs/mitre/MITRE_MAPPING_DESIGN.md and
+  docs/mitre/MITRE_VALIDATION.md. Tests: tests/test_mitre_mapping.py.
+- Scope limitation: this version supports only a conservative T1110 candidate;
+  country, device, hour, distance, session length, bytes out and protocol are
+  not independently mapped. Do not generalize the threshold to production.
+
 Conceptual Flow
 ``` text
 Raw Evidence

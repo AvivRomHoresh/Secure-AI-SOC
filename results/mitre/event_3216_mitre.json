@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "event_id": 3216,
+  "mapping_status": "no_mapping",
+  "candidate_techniques": [],
+  "unmapped_observations": [
+    "country",
+    "device",
+    "hour",
+    "distance_km",
+    "session_minutes",
+    "bytes_out_mb",
+    "protocol"
+  ],
+  "rationale": "Recorded failure count is below the exploratory screening rule. This does not establish that the event is benign.",
+  "rule_version": "mitre-t1110-screen-v0.1",
+  "screening_threshold": 5,
+  "screening_threshold_scope": "exploratory_synthetic_only",
+  "llm_generated": false
+}
