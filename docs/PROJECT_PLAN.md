@@ -239,7 +239,8 @@ no complete timestamps, so no chronological split. Results must not
 be generalized to real-world SOC performance without further evidence.
 Git: Phase 1 splitting/documentation commit `67fb746` was reported
 pushed to `main`; the subsequent Phase 1 documentation/plan update was
-reported pushed as commit `6c59fb1`. Phase 2 changes are pending commit.
+reported pushed as commit `6c59fb1`. Phase 2 was subsequently pushed as commit `8c5e907`; the Isolation
+Forest Phase 3 checkpoint was pushed as commit `1003b46`.
 
 Deliverables
 Dataset description.
@@ -338,8 +339,8 @@ are justified before freezing the model input schema for Phase 3.
 Documentation and Git checkpoint
 See docs/datasets/PREPROCESSING.md for detailed methods and test results.
 Generated data/processed/, data/experimental/, *.joblib and the generated
-feature-name JSON are excluded by .gitignore. Commit and push code,
-configuration, .gitignore, and documentation before proceeding to Phase 3.
+feature-name JSON are excluded by .gitignore. Phase 2 code, configuration, and documentation were committed and
+pushed as `8c5e907` before Phase 3 development began.
 ---
 7. Phase 3 --- Anomaly Detection
 Goal
@@ -395,17 +396,66 @@ The held-out test set has not been used for model selection or evaluation.
 Do not tune the saved threshold using future test results.
 
 Git checkpoint:
-This Phase 3 update and its associated scripts/documentation are to be
-committed and pushed before starting the Autoencoder. Do not mark
-Phase 3 complete until both models and their comparison are evaluated.
+Isolation Forest implementation, validation results, and documentation
+were committed and pushed to main as commit 1003b46. Do not mark
+Phase 3 complete until both frozen models are evaluated and compared
+on the held-out test set.
 
 Model B --- Autoencoder
-[ ] Define the Autoencoder architecture.
-[ ] Train it on the appropriate training data.
-[ ] Calculate reconstruction error.
-[ ] Define the anomaly threshold.
-[ ] Evaluate predictions.
-[ ] Save the trained model and configuration.
+[x] Define the Autoencoder architecture.
+[x] Train it on the appropriate training data.
+[x] Calculate reconstruction error on validation events.
+[x] Define the anomaly threshold using validation data.
+[x] Evaluate predictions on validation data.
+[x] Save the trained model and training metadata locally.
+[x] Document the model and its validation results.
+[ ] Evaluate the frozen model and threshold on the held-out test set.
+
+Autoencoder Progress (25 September 2026)
+Status: Training, validation scoring, threshold selection, and model
+ documentation completed. Independent test evaluation is pending.
+
+Implementation and reproducibility:
+- Training: 2,660 normal-only events with 17 preprocessed features.
+- Architecture: input (17) -> 8 -> 4 -> 8 -> reconstruction (17).
+- Training iterations reported: 60; final training loss: 0.083025.
+- Mean training reconstruction MSE: 0.165873.
+- Training script: `src/detection/train_autoencoder.py`.
+- Validation scoring: `src/detection/evaluate_autoencoder.py`.
+- Threshold selection: `src/detection/select_autoencoder_threshold.py`.
+- Model and training metadata: `models/autoencoder/` (locally generated).
+- Validation scores: `results/autoencoder/validation_scores.csv`.
+- Threshold and metrics: `results/autoencoder/threshold_selection.json`.
+- Detailed documentation: `docs/models/AUTOENCODER.md`.
+- Scoring: per-event reconstruction mean squared error (MSE);
+  larger errors indicate greater abnormality.
+
+Validation observations:
+- Validation events: 594 (570 normal; 24 attack).
+- Normal reconstruction MSE: mean 0.176235;
+  range 0.058768 to 0.869302.
+- Attack reconstruction MSE: mean 21202.953396;
+  range 678.017893 to 56217.124496.
+- Threshold selected on validation using the implemented F1-based
+  selection procedure: 678.017893 (rounded for display; use saved
+  JSON precision for subsequent predictions).
+- Validation precision: 1.0000; recall: 1.0000; F1: 1.0000.
+- Validation confusion matrix: TN=570, FP=0, FN=0, TP=24.
+
+Interpretation and limitations:
+The validation classes are fully separated for this synthetic dataset.
+The extremely large attack reconstruction errors reflect the strong
+synthetic feature separation and should not be generalized to real
+security telemetry. The threshold was selected using validation labels,
+so these metrics are not an independent generalization estimate.
+Do not change the selected threshold in response to held-out test results.
+
+Git checkpoint:
+Commit and push Autoencoder scripts, documentation, and reproducible
+small result files before beginning final held-out evaluation.
+Check `.gitignore` and staged files so generated model binaries and
+sensitive or unnecessarily large data are not committed.
+
 Model Comparison / Aggregation
 For every event, preserve both outputs separately.
 Example:

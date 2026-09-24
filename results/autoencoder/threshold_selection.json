@@ -1,0 +1,22 @@
+{
+  "model": "autoencoder",
+  "dataset": "validation",
+  "score_column": "reconstruction_mse",
+  "prediction_rule": "reconstruction_mse >= threshold",
+  "selection_method": "maximize validation F1 over unique scores and all-normal candidate",
+  "tie_break": "highest threshold",
+  "validation_events": 594,
+  "normal_events": 570,
+  "attack_events": 24,
+  "selected_threshold": 678.0178934710984,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "confusion_matrix": {
+    "tn": 570,
+    "fp": 0,
+    "fn": 0,
+    "tp": 24
+  },
+  "test_set_used": false
+}

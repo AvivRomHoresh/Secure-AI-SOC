@@ -1,0 +1,19 @@
+[
+  "categorical__user_admin01",
+  "categorical__user_analyst01",
+  "categorical__user_analyst02",
+  "categorical__user_developer01",
+  "categorical__user_finance01",
+  "categorical__country_IL",
+  "categorical__device_admin_workstation",
+  "categorical__device_developer_workstation",
+  "categorical__device_managed_laptop",
+  "categorical__protocol_HTTPS",
+  "categorical__protocol_SSH",
+  "categorical__protocol_VPN",
+  "numerical__hour",
+  "numerical__failed_attempts",
+  "numerical__distance_km",
+  "numerical__session_minutes",
+  "numerical__bytes_out_mb"
+]

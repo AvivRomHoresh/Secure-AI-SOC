@@ -1,0 +1,22 @@
+{
+  "model": "MLPRegressor-based autoencoder",
+  "seed": 42,
+  "training_samples": 2660,
+  "input_features": 17,
+  "hidden_layer_sizes": [
+    8,
+    4,
+    8
+  ],
+  "activation": "relu",
+  "optimizer": "adam",
+  "max_iter": 500,
+  "actual_iterations": 60,
+  "final_training_loss": 0.08302542376108807,
+  "training_reconstruction_mse_mean": 0.16587336207542364,
+  "training_reconstruction_mse_median": 0.14399921743508615,
+  "converged_before_iteration_limit": true,
+  "threshold_selected": false,
+  "validation_evaluated": false,
+  "test_evaluated": false
+}
