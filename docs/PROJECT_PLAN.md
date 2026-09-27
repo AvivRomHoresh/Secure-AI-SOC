@@ -728,6 +728,19 @@ Phase 6 initial integration checkpoint (2026-09-28):
 - Five mocked end-to-end runner tests cover a valid response, malformed JSON, simulated Ollama failure, unsupported MITRE output, and semantic review; they verify evidence preservation without running the live model.
 - Remaining: independent artifact provenance/integrity verification, live untrusted-context injection and defended-condition tests, and response variability measurements. Mocked runner tests do not establish live-model robustness.
 
+
+Phase 6 prompt injection infrastructure checkpoint (28 September 2026):
+- Added bounded optional untrusted_context for controlled experiments.
+- Implemented separate Baseline and Adversarial execution conditions.
+- Added experimental condition and trusted/untrusted SHA-256 hashes to logs.
+- Created experiments/prompt_injection/EXPERIMENT_DESIGN.md.
+- All 33 automated tests passed, including six new experiment-context tests.
+- Defended condition is not implemented yet.
+- Live prompt injection experiments and repeated-run evaluation remain pending.
+- Existing system prompt already contains untrusted-content safeguards;
+  the Adversarial condition is not a completely unprotected baseline.
+- Automated tests do not establish live-model prompt injection resistance.
+
 11. Phase 7 --- Responsible AI and Human-in-the-Loop
 Goal
 Ensure that the LLM remains an advisory component and that high-impact
