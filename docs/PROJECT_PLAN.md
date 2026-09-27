@@ -351,12 +351,12 @@ Model A --- Isolation Forest
 [x] Generate anomaly scores.
 [x] Define the decision threshold using validation data.
 [x] Evaluate predictions on validation data.
-[ ] Evaluate the frozen model and threshold on the held-out test set
+[x] Evaluate the frozen model and threshold on the held-out test set
     after both detectors have completed development.
 
 Isolation Forest Progress (25 September 2026)
 Status: Model training, validation scoring, threshold selection, and
-experiment documentation completed. Final held-out test evaluation is pending.
+experiment documentation completed. Frozen held-out test evaluation subsequently completed.
 
 Implementation and reproducibility:
 - Training: 2,660 normal events; 17 preprocessed input features.
@@ -701,7 +701,7 @@ Prefer structured output, for example:
 }
 ```
 Tasks
-[ ] Install/configure the selected local Llama model.
+[x] Install/configure the selected local Llama model (Ollama 0.34.4; llama3.2:3b; CLI smoke test passed).
 [ ] Define a reproducible system prompt.
 [ ] Define the structured input schema.
 [ ] Define the structured output schema.
@@ -1413,3 +1413,31 @@ support the following chain:
 The selected final Presentation or Report must use measured results to answer
 the approved central research question rather than merely describing the
 software implementation.
+---
+Pre-Phase-6 audit and local LLM environment checkpoint (28 September 2026)
+- Windows version: 10.0.26100.8246; Intel Core i7-13620H; 16 GB RAM; Intel UHD Graphics.
+- Git: local main and origin/main aligned at 71da0fb before this documentation checkpoint.
+- Phase 4 and 5 regression tests: 8/8 passed using `python -m unittest discover -s tests -v`.
+- Read-only reproduction of frozen held-out detection predictions and metrics: PASS.
+  Isolation Forest TN=570 FP=0 FN=1 TP=23 (F1=0.978723);
+  Autoencoder TN=570 FP=0 FN=0 TP=24 (F1=1.000000);
+  agreement 593/594. Original held-out result files were not overwritten.
+- Local Ollama version 0.34.4, `llama3.2:3b` pulled successfully and
+  responded to a simple English SOC-definition CLI prompt. This is an
+  installation smoke test, not evidence of structured SOC analysis quality.
+- Phase 6 implementation still pending: reproducible prompt, schemas, output
+  validation, version/configuration and prompt logging, trust boundaries,
+  evidence immutability, malformed-output fallback, and systematic evaluation.
+- Synthetic data are strongly separable; these detection metrics are not
+  evidence of production SOC effectiveness. Three held-out events used for
+  XAI/MITRE case studies must not be described as untouched independent
+  LLM attack/defense evaluation cases. Freeze separate evaluation cases
+  and attack templates before final experiments.
+- The Phase 5 mapper validates selected fields, not cryptographic provenance
+  or the complete evidence schema. Full input trust separation and output
+  checks belong to Phase 6/defense integration; do not claim them complete.
+- Outstanding reproducibility work: fresh-clone environment test, automated
+  preprocessing regression test, and verification of direct dependency pins.
+- Autoencoder `training_info.json` captures the state at training time; its
+  historical false threshold/evaluation flags should not be rewritten to
+  imply those later activities happened during training.

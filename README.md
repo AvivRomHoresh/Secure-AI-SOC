@@ -3,7 +3,7 @@
 **Student:** Aviv Rom Horesh  
 **Course:** AI-Guided / AI-Enhanced Cybersecurity  
 **Project type:** Integrated final project (Type 2)  
-**Status:** Approved; initial environment setup in progress
+**Status:** Phases 1–5 implemented; Phase 6 local LLM installed, integration pending
 
 > **Core principle:** AI assists. Humans decide.
 
@@ -58,7 +58,7 @@ Supporting security evidence, the LLM recommendation, and the final human decisi
 
 ## Current Status
 
-The Git repository, initial folder structure, Python virtual environment, and initial data-science dependencies have been set up. An initial Isolation Forest smoke test passed on synthetic example values. **This is an environment check, not a project experiment or measured research result.** The dataset, full detection pipeline, LLM integration, and controlled experiments have not yet been implemented.
+Phases 1–5 are implemented: reproducible synthetic authentication telemetry (3,960 events), normal-only preprocessing, frozen Isolation Forest and Autoencoder detection, diagnostic XAI and structured evidence, and conservative deterministic MITRE ATT&CK T1110 screening. On the held-out synthetic test partition (594 events), Isolation Forest detected 23/24 labeled attacks (0 false positives); Autoencoder detected 24/24 (0 false positives); detector agreement was 593/594. These unusually strong results reflect a strongly separable synthetic dataset and do not establish real-world performance. Eight Phase 4/5 automated tests and a read-only detection reproduction check passed. Ollama 0.34.4 and `llama3.2:3b` are installed and passed a basic CLI smoke test; structured LLM integration and the baseline/adversarial/defended experiments remain unimplemented. See `docs/PROJECT_PLAN.md` for limitations and remaining work.
 
 NVIDIA Morpheus is an optional extension, not a dependency of the core project.
 

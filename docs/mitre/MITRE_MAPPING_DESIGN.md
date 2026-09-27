@@ -1,7 +1,7 @@
 # Phase 5 — Evidence-Based MITRE ATT&CK Mapping Design
 
-**Project:** Secure & Explainable AI-Powered SOC  
-**Status:** Design proposal; mapping code and tests not yet implemented.  
+**Project:** Secure & Explainable AI-Powered SOC
+**Status:** Historical design proposal; Phase 5 implementation and four unit tests completed. See `src/mitre/map_evidence.py` and `docs/mitre/MITRE_VALIDATION.md` for actual behavior. The design below contains proposals that were not fully implemented; do not treat them as tested guarantees.
 **ATT&CK domain:** Enterprise ATT&CK (official MITRE pages reviewed September 2026).
 
 ## 1. Objective and trust boundary
@@ -35,7 +35,7 @@ Current version-1.0 evidence objects preserve nine fields: `user`, `country`, `d
 
 **Scope decision:** Phase 5's initial implementation will support *T1110 as a qualified candidate* only when an explicit, documented failed-attempts rule is met. It will not assert T1110.001 or other sub-techniques from the current dataset. If the aggregation semantics cannot be confirmed, even the T1110 candidate must return `insufficient_evidence` until that limitation is resolved.
 
-## 4. Proposed deterministic decision policy (not yet implemented)
+## 4. Original proposed deterministic decision policy (historical; see implementation notes below)
 
 1. Validate evidence schema, event ID, numeric ranges, and provenance; reject malformed inputs.
 2. Read **only** `raw_evidence` for behavior assessment. Keep model scores/XAI as separately labeled context.
@@ -95,3 +95,17 @@ This is an **illustrative design object, not an executed mapping result**. An im
 - MITRE ATT&CK, T1110.003 Password Spraying: https://attack.mitre.org/techniques/T1110/003/
 - MITRE ATT&CK, T1078 Valid Accounts: https://attack.mitre.org/techniques/T1078/
 - MITRE ATT&CK, DET0463 Brute Force Authentication Failures: https://attack.mitre.org/detectionstrategies/DET0463/
+
+## 9. Implemented Phase 5 behavior and design differences
+
+The implemented rule version is `mitre-t1110-screen-v0.1`. For synthetic
+`failed_attempts >= 5`, it returns `insufficient_evidence` and a possible,
+unconfirmed T1110 / TA0006 indicator; otherwise it returns `no_mapping`.
+This screening threshold is exploratory and dataset-specific, not a
+production-ready threshold. The actual mapper validates schema version,
+event ID and nonnegative integer failed-attempt count. It does **not**
+validate cryptographic provenance, a complete evidence schema or the
+underlying aggregation window; the original stronger validation language
+above was a design aspiration, not a completed feature. No sub-technique,
+valid-account misuse or exfiltration is inferred from available telemetry.
+See `docs/mitre/MITRE_VALIDATION.md` and the saved Phase 5 outputs.
