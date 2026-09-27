@@ -702,14 +702,14 @@ Prefer structured output, for example:
 ```
 Tasks
 [x] Install/configure the selected local Llama model (Ollama 0.34.4; llama3.2:3b; CLI smoke test passed).
-[ ] Define a reproducible system prompt.
-[ ] Define the structured input schema.
-[ ] Define the structured output schema.
-[ ] Validate/parse LLM output.
-[ ] Log model/version/settings used.
-[ ] Log prompt/context used for every experimental run.
-[ ] Prevent the LLM from silently modifying upstream evidence.
-[ ] Create a fallback for malformed output.
+[x] Define a reproducible system prompt (src/llm/system_prompt_v1.txt; soc-system-v1.0).
+[x] Define the structured input schema (docs/PHASE6_LLM_CONTRACT.md; src/llm/build_llm_input.py).
+[x] Define the structured output schema (seven required JSON fields; src/llm/run_local_llm.py).
+[x] Validate/parse LLM output (structural validation plus heuristic semantic checks; passing does not prove factual grounding).
+[x] Log model digest, prompt version, runtime settings, request/input hashes, and Ollama timing metrics.
+[x] Log system prompt and full structured input in the current local runner; further experimental coverage remains to be tested.
+[ ] Add explicit automated tests for upstream evidence immutability and adversarial trust-boundary enforcement; current runner reads evidence and writes separate logs.
+[x] Create fallback for malformed output and semantic review flags (automated recommendation withheld; human review required).
 Questions to Answer
 Why is the LLM used?
 What information is it allowed to interpret?
@@ -718,6 +718,14 @@ How is its output validated?
 How reproducible/variable are its responses?
 What are the limitations of using a local LLM?
 ---
+
+Phase 6 initial integration checkpoint (2026-09-28):
+- Local Ollama llama3.2:3b (digest a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72) responded to event 3505.
+- First output was structurally valid but omitted explicit detector disagreement and gave an unexplained Low risk label.
+- The integrated heuristic validator flagged both issues and withheld the automated recommendation; the original run log was preserved.
+- The complete existing test suite passed: 16/16 tests, including eight semantic-validator tests.
+- Remaining: add end-to-end runner tests, robust evidence-integrity checks, adversarial input tests, and response variability measurements.
+
 11. Phase 7 --- Responsible AI and Human-in-the-Loop
 Goal
 Ensure that the LLM remains an advisory component and that high-impact
