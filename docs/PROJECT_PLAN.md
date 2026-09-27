@@ -723,9 +723,10 @@ Phase 6 initial integration checkpoint (2026-09-28):
 - Local Ollama llama3.2:3b (digest a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72) responded to event 3505.
 - First output was structurally valid but omitted explicit detector disagreement and gave an unexplained Low risk label.
 - The integrated heuristic validator flagged both issues and withheld the automated recommendation; the original run log was preserved.
-- The expanded test suite passed: 22/22 tests (four evidence, eight semantic validation, six assembly-level trust-boundary, four MITRE).
+- The expanded test suite passed: 27/27 tests (four evidence, eight semantic validation, six assembly-level trust-boundary, five mocked runner integration, four MITRE).
 - Six assembly-level tests cover deterministic read-only input assembly, exclusion of ground-truth fields, mismatched event IDs, inconsistent detector agreement, rejection of unsupported confirmed MITRE assessment, and resistance of trusted assembly data to external instruction strings.
-- Remaining: end-to-end runner immutability tests, independent artifact provenance/integrity verification, live untrusted-context injection and defended-condition tests, and response variability measurements.
+- Five mocked end-to-end runner tests cover a valid response, malformed JSON, simulated Ollama failure, unsupported MITRE output, and semantic review; they verify evidence preservation without running the live model.
+- Remaining: independent artifact provenance/integrity verification, live untrusted-context injection and defended-condition tests, and response variability measurements. Mocked runner tests do not establish live-model robustness.
 
 11. Phase 7 --- Responsible AI and Human-in-the-Loop
 Goal
