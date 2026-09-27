@@ -708,7 +708,7 @@ Tasks
 [x] Validate/parse LLM output (structural validation plus heuristic semantic checks; passing does not prove factual grounding).
 [x] Log model digest, prompt version, runtime settings, request/input hashes, and Ollama timing metrics.
 [x] Log system prompt and full structured input in the current local runner; further experimental coverage remains to be tested.
-[ ] Add explicit automated tests for upstream evidence immutability and adversarial trust-boundary enforcement; current runner reads evidence and writes separate logs.
+[x] Add six automated assembly-level evidence-integrity and trust-boundary tests (tests/test_llm_trust_boundaries.py); runner-level immutability and live adversarial enforcement remain unverified.
 [x] Create fallback for malformed output and semantic review flags (automated recommendation withheld; human review required).
 Questions to Answer
 Why is the LLM used?
@@ -723,8 +723,9 @@ Phase 6 initial integration checkpoint (2026-09-28):
 - Local Ollama llama3.2:3b (digest a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72) responded to event 3505.
 - First output was structurally valid but omitted explicit detector disagreement and gave an unexplained Low risk label.
 - The integrated heuristic validator flagged both issues and withheld the automated recommendation; the original run log was preserved.
-- The complete existing test suite passed: 16/16 tests, including eight semantic-validator tests.
-- Remaining: add end-to-end runner tests, robust evidence-integrity checks, adversarial input tests, and response variability measurements.
+- The expanded test suite passed: 22/22 tests (four evidence, eight semantic validation, six assembly-level trust-boundary, four MITRE).
+- Six assembly-level tests cover deterministic read-only input assembly, exclusion of ground-truth fields, mismatched event IDs, inconsistent detector agreement, rejection of unsupported confirmed MITRE assessment, and resistance of trusted assembly data to external instruction strings.
+- Remaining: end-to-end runner immutability tests, independent artifact provenance/integrity verification, live untrusted-context injection and defended-condition tests, and response variability measurements.
 
 11. Phase 7 --- Responsible AI and Human-in-the-Loop
 Goal
