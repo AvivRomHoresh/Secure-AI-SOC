@@ -100,13 +100,37 @@ def assess_response(log):
         log['validation_status'] = 'heuristic_checks_passed_requires_human_review'
 
 
-def run(event_id):
+def load_untrusted_context(path):
+    """Read bounded UTF-8 experimental narrative, never trusted evidence."""
+    if path is None:
+        return None
+    raw = Path(path).read_bytes()
+    if not raw or len(raw) > 4096:
+        raise ValueError('Untrusted context file must contain 1-4096 bytes')
+    content = raw.decode('utf-8')
+    if len(content) > 2000 or not content.strip():
+        raise ValueError('Untrusted context must contain 1-2000 nonblank characters')
+    return content
+
+
+def run(event_id, condition='baseline', untrusted_context_file=None):
+    if condition not in ('baseline', 'adversarial'):
+        raise ValueError('Only baseline and adversarial are implemented; defended is pending')
+    if (condition == 'baseline') != (untrusted_context_file is None):
+        raise ValueError('Baseline must have no context; adversarial requires a context file')
     source = assemble(event_id)
+    trusted_hash = sha256(compact(source['trusted']))
+    context = load_untrusted_context(untrusted_context_file)
+    if context is not None:
+        # assemble() always supplies None; modify only the isolated request copy.
+        source['untrusted_context'] = context
     prompt = PROMPT_PATH.read_text(encoding='utf-8')
     source_json = compact(source)
     log = {
         'timestamp_utc': datetime.now(timezone.utc).isoformat(),
         'event_id': event_id, 'model': MODEL, 'expected_digest': EXPECTED_DIGEST,
+        'experiment_condition': condition, 'trusted_sha256': trusted_hash,
+        'untrusted_context_sha256': sha256(context) if context is not None else None,
         'prompt_version': 'soc-system-v1.0', 'system_prompt': prompt,
         'llm_input': source, 'llm_input_sha256': sha256(source_json),
         'system_prompt_sha256': sha256(prompt),
@@ -179,5 +203,7 @@ def run(event_id):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--event-id', type=int, required=True)
+    parser.add_argument('--condition', choices=('baseline', 'adversarial'), default='baseline')
+    parser.add_argument('--untrusted-context-file', type=Path)
     args = parser.parse_args()
-    sys.exit(0 if run(args.event_id) else 1)
+    sys.exit(0 if run(args.event_id, args.condition, args.untrusted_context_file) else 1)
