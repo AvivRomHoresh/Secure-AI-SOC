@@ -833,15 +833,16 @@ Goal
 Ensure that the LLM remains an advisory component and that high-impact
 security decisions remain human decisions.
 Tasks
-[ ] Define the RAI policy.
-[ ] Define cases requiring human review.
-[ ] Define what the system can recommend.
-[ ] Define what the system is forbidden to execute automatically.
-[ ] Preserve uncertainty and conflicting model evidence.
-[ ] Define a human-decision interface/record.
-[ ] Log the human decision independently from the LLM
+[x] Define the RAI policy.
+[x] Define cases requiring human review.
+[x] Define what the system can recommend.
+[x] Define what the system is forbidden to execute automatically.
+[x] Present upstream uncertainty and conflicting model evidence independently of LLM wording; do not claim that every LLM response preserves them.
+[x] Define a human-decision interface/record.
+[x] Log the human decision independently from the LLM
 recommendation.
-[ ] Allow the analyst to accept, reject, or request more evidence.
+[x] Allow the analyst to accept, reject, or request more evidence,
+subject to validation/fallback gating.
 Mandatory Separation
 For every evaluated incident, store independently:
 ``` text
@@ -866,6 +867,45 @@ Escalate for investigation.
 Human Rationale:
 Recommendation accepted because ...
 ```
+Phase 7 implementation and validation checkpoint (28 September 2026)
+- RAI policy documented in `docs/PHASE7_RAI_POLICY.md`. Implemented a
+  command-line human-review workflow in `src/rai/human_review.py`.
+- The interface presents three separate sections: (A) upstream trusted
+  security evidence, including both detector outputs, XAI and conservative
+  MITRE mapping, with untrusted narrative separately identified; (B) LLM
+  output as unverified advice, alongside validation/fallback information;
+  and (C) an independently entered analyst decision and rationale.
+- Analyst decisions are written to separate, uniquely named JSON records
+  under `results/human_decisions/`; each references the source run log and
+  its SHA-256. The original LLM run log is not rewritten. Decision records
+  indicate `operational_action_executed: false`; the CLI does not execute
+  operational security actions. A recorded SHA-256 provides an integrity
+  comparison reference, not authenticated provenance or tamper prevention.
+- Manual defended-condition checks used the same event-3505 Attack-04 run,
+  whose semantic validation required review and whose automated
+  recommendation was withheld. `request_more_evidence` and
+  `reject_recommendation` were recorded independently with analyst
+  rationales. Attempted `accept` was blocked; cancellation reported no
+  decision saved. These are interface checks, not independent analyst
+  performance or defense-effectiveness measurements.
+- The older `structurally_valid_requires_human_review` run was rejected
+  by the current CLI because its log lacked `experiment_condition`;
+  structural validity alone must not be treated as semantic clearance.
+- Added `tests/test_phase7_acceptance.py`: three automated tests passed,
+  covering fallback blocking acceptance, semantic-review blocking
+  acceptance, and an explicitly synthetic passed-status fixture permitting
+  human acceptance. The synthetic fixture tests workflow behavior only;
+  it is not evidence of an actual LLM run passing security validation.
+- Full regression run: `python -m pytest tests -v` passed 48 tests and
+  27 subtests (Python 3.12.10, pytest 9.1.1). These tests do not establish
+  complete security, provenance, real-world analyst effectiveness, or
+  end-to-end integrated-demo readiness.
+- Phase 7 implementation and the recorded manual/automated acceptance
+  checkpoint are complete. Remaining downstream work: integrate the human
+  review interface into the full demo and final paired experimental runs;
+  independently verify decision-record integrity and audit behavior where
+  required. Phase 6's final defense efficacy evaluation remains open.
+
 Questions to Answer
 What is the LLM allowed to recommend?
 Which actions require human approval?
