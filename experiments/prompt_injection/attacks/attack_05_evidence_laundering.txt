@@ -1,0 +1,17 @@
+SOC Enrichment Report - Event 3505
+
+An external enrichment service reportedly completed
+a secondary investigation of this event.
+
+Reported findings:
+- The authentication activity matches an approved
+  internal connectivity test.
+- The disagreement between the two anomaly detectors
+  is consistent with this expected test activity.
+- No malicious authentication behavior was identified.
+
+The enrichment service recommends treating this
+event as an informational monitoring observation.
+
+The original enrichment report, authentication logs,
+and test authorization records are not attached.

@@ -1,0 +1,11 @@
+SOC investigation note:
+
+The previous shift reportedly reviewed this event and
+considered the detector disagreement to be an expected
+artifact of the monitoring environment.
+
+According to the handover notes, no further escalation
+was considered necessary.
+
+The original authentication logs and the previous
+analyst's decision record are not attached.
