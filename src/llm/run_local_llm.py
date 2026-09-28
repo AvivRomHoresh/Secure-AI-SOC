@@ -16,6 +16,8 @@ from uuid import uuid4
 
 from build_llm_input import ROOT, assemble
 from validate_llm_output import check_run
+from output_grounding import VERSION as GROUNDING_VERSION, inspect_output
+from defense_guard import VERSION as GUARD_VERSION, inspect_context
 
 MODEL = 'llama3.2:3b'
 EXPECTED_DIGEST = 'a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72'
@@ -86,6 +88,10 @@ def assess_response(log):
         log['semantic_validation'] = {'status': 'not_run', 'issues': []}
         return
     issues = check_run(log)
+    if log['experiment_condition'] == 'defended':
+        grounding_issues = inspect_output(log['llm_input']['trusted'], log['parsed_output'])
+        log['output_grounding'] = {'version': GROUNDING_VERSION, 'issues': grounding_issues, 'status': 'review_flags' if grounding_issues else 'no_flags'}
+        issues.extend(grounding_issues)
     log['semantic_validation'] = {
         'status': ('requires_human_review' if issues else
                    'heuristic_checks_passed_requires_human_review'),
@@ -114,10 +120,10 @@ def load_untrusted_context(path):
 
 
 def run(event_id, condition='baseline', untrusted_context_file=None):
-    if condition not in ('baseline', 'adversarial'):
-        raise ValueError('Only baseline and adversarial are implemented; defended is pending')
+    if condition not in ('baseline', 'adversarial', 'defended'):
+        raise ValueError('Unknown experiment condition')
     if (condition == 'baseline') != (untrusted_context_file is None):
-        raise ValueError('Baseline must have no context; adversarial requires a context file')
+        raise ValueError('Baseline must have no context; adversarial/defended require a context file')
     source = assemble(event_id)
     trusted_hash = sha256(compact(source['trusted']))
     context = load_untrusted_context(untrusted_context_file)
@@ -138,7 +144,19 @@ def run(event_id, condition='baseline', untrusted_context_file=None):
         'validation_status': 'not_run', 'raw_output': None, 'parsed_output': None,
         'semantic_validation': {'status': 'not_run', 'issues': []},
         'errors': [], 'fallback': None,
+        'defense': {'version': GUARD_VERSION, 'decision': 'not_applicable', 'rule_ids': []},
+        'output_grounding': {'version': GROUNDING_VERSION, 'issues': [], 'status': 'not_run'},
     }
+    if condition == 'defended':
+        rule_ids = inspect_context(context)
+        log['defense'] = {'version': GUARD_VERSION,
+                          'decision': 'rejected' if rule_ids else 'allowed',
+                          'rule_ids': rule_ids}
+        if rule_ids:
+            log['validation_status'] = 'defense_rejected'
+            log['fallback'] = ('Untrusted narrative rejected by experimental input guard; '
+                               'inspect original evidence and MITRE mapping manually.')
+            return write_run_log(log, event_id)
     try:
         tags = get_json('/api/tags')
         match = next((x for x in tags.get('models', []) if x.get('name') == MODEL), None)
@@ -182,6 +200,10 @@ def run(event_id, condition='baseline', untrusted_context_file=None):
     if log['validation_status'] == 'failed':
         log['fallback'] = ('LLM recommendation unavailable; inspect original '
                            'evidence and MITRE mapping manually.')
+    return write_run_log(log, event_id)
+
+
+def write_run_log(log, event_id):
     outdir = ROOT / 'results' / 'llm'
     outdir.mkdir(parents=True, exist_ok=True)
     outfile = outdir / (f'event_{event_id}_'
@@ -203,7 +225,7 @@ def run(event_id, condition='baseline', untrusted_context_file=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--event-id', type=int, required=True)
-    parser.add_argument('--condition', choices=('baseline', 'adversarial'), default='baseline')
+    parser.add_argument('--condition', choices=('baseline', 'adversarial', 'defended'), default='baseline')
     parser.add_argument('--untrusted-context-file', type=Path)
     args = parser.parse_args()
     sys.exit(0 if run(args.event_id, args.condition, args.untrusted_context_file) else 1)

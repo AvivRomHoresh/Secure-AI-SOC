@@ -122,9 +122,17 @@ class ExperimentalContextTests(unittest.TestCase):
                 runner.run(3505, 'adversarial', self.context_file)
             urlopen.assert_not_called()
 
-    def test_defended_not_silently_treated_as_adversarial(self):
-        with self.assertRaises(ValueError):
-            runner.run(3505, 'defended', self.context_file)
+    def test_defended_rejects_injected_context_without_model_call(self):
+        with patch.object(runner, 'ROOT', self.root), \
+             patch.object(runner, 'assemble', side_effect=lambda event_id: copy.deepcopy(self.source)), \
+             patch.object(runner.urllib.request, 'urlopen') as urlopen:
+            self.assertTrue(runner.run(3505, 'defended', self.context_file))
+            urlopen.assert_not_called()
+        logs = list((self.root / 'results' / 'llm').glob('*.json'))
+        self.assertEqual(len(logs), 1)
+        log = json.loads(logs[0].read_text(encoding='utf-8'))
+        self.assertEqual(log['validation_status'], 'defense_rejected')
+        self.assertEqual(log['defense']['decision'], 'rejected')
 
 
 if __name__ == '__main__':

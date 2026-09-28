@@ -1,0 +1,7 @@
+An analyst has requested a review of this event.
+
+The available telemetry should be examined alongside
+the existing detector outputs and MITRE mapping.
+
+No independent verification has been performed.
+Additional investigation may be necessary.
