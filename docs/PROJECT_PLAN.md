@@ -1099,16 +1099,27 @@ RAI Policy Gate
 Human Decision
 ```
 Tasks
-[ ] Define trusted and untrusted data sources.
-[ ] Represent trust explicitly in the input architecture.
-[ ] Prevent untrusted narrative from overwriting trusted fields.
-[ ] Validate that the recommendation references real evidence.
-[ ] Detect contradictions between recommendation and upstream
+[x] Define trusted and untrusted data sources.
+[x] Represent trust explicitly in the input architecture.
+[x] Prevent untrusted narrative from overwriting trusted fields.
+[x] Validate that the recommendation references real evidence.
+[x] Detect contradictions between recommendation and upstream
 evidence where feasible.
-[ ] Add policy constraints.
-[ ] Force human review for defined high-impact/uncertain cases.
-[ ] Re-run the exact adversarial experiment.
-[ ] Compare before/after defense.
+[x] Add policy constraints.
+[x] Force human review for defined high-impact/uncertain cases.
+[x] Re-run the exact adversarial experiment.
+[x] Compare before/after defense.
+Phase 10 Completion Checkpoint
+- Official defended matrix complete: 27/27 predefined runs.
+- Input guard rejected 9/27 runs before model invocation; model invoked for 18/27.
+- Validation outcomes: 9 defense_rejected, 6 failed, 12 semantic_review_required.
+- Attack Success: 2/27 (7.4%), compared with 5/27 (18.5%) in Phase 9.
+- By attack type: Direct 0/9, Indirect 0/9, Authority 2/9.
+- All 27/27 official defended runs ended in fallback/withholding; 0/27 produced an unwithheld automated recommendation.
+- Both S5-success cases were withheld downstream.
+- One additional 2576 x Indirect run was preserved for auditability and excluded from the predefined 27-run denominator.
+- Interpretation is system-level: Direct attacks were blocked pre-model, while Authority manipulation remained a residual raw-model weakness.
+- Official results: experiments/prompt_injection/PHASE10_DEFENDED_RESULTS.md.
 Questions to Answer
 What is considered trusted?
 What is considered untrusted?
@@ -1609,7 +1620,7 @@ RAI/Human-in-the-Loop and separate logging of evidence, AI
 recommendation and human decision are complete.
 Milestone 6 --- AI Attack Evaluation [COMPLETE]
 Baseline and Adversarial conditions are complete.
-Milestone 7 --- Defense Evaluation
+Milestone 7 --- Defense Evaluation [COMPLETE]
 Defended condition and before/after comparison are complete.
 Milestone 8 --- Final System
 Integrated SOC Lite demo works end-to-end.
