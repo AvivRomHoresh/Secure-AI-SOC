@@ -1,11 +1,45 @@
 {
   "schema_version": "phase11-experimental-manifest-v1",
   "description": "Audit manifest for the frozen Phase 8 baseline, Phase 9 adversarial, and Phase 10 defended official runs.",
+  "human_decision_scope": "One independent final human analyst decision per official evaluated incident. The same incident-level decision reference is linked to all official repetitions and conditions for that event; it does not represent a separate human decision for each experimental run.",
   "official_run_counts": {
     "baseline": 9,
     "adversarial": 27,
     "defended": 27,
     "total": 63
+  },
+  "official_human_decision_count": 3,
+  "official_human_decisions": {
+    "2576": {
+      "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+      "decision": "reject_recommendation",
+      "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+      "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+      "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+      "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+      "analyst_id": "Aviv_Rom_Horesh",
+      "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+    },
+    "2696": {
+      "decision_id": "6037268c31ad4d7687fb787a69faac56",
+      "decision": "request_more_evidence",
+      "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+      "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+      "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+      "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+      "analyst_id": "Aviv_Rom_Horesh",
+      "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+    },
+    "3909": {
+      "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+      "decision": "request_more_evidence",
+      "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+      "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+      "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+      "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+      "analyst_id": "Aviv_Rom_Horesh",
+      "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+    }
   },
   "excluded_runs": [
     {
@@ -36,7 +70,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-2576-NONE-R2",
@@ -58,7 +101,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-2576-NONE-R3",
@@ -80,7 +132,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-2696-NONE-R1",
@@ -102,7 +163,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-2696-NONE-R2",
@@ -124,7 +194,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-2696-NONE-R3",
@@ -146,7 +225,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-3909-NONE-R1",
@@ -168,7 +256,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-3909-NONE-R2",
@@ -190,7 +287,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-B-3909-NONE-R3",
@@ -212,7 +318,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-DIRECT-R1",
@@ -234,7 +349,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-DIRECT-R2",
@@ -256,7 +380,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-DIRECT-R3",
@@ -278,7 +411,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-INDIRECT-R1",
@@ -300,7 +442,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-INDIRECT-R2",
@@ -322,7 +473,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-INDIRECT-R3",
@@ -344,7 +504,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-AUTHORITY-R1",
@@ -366,7 +535,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-AUTHORITY-R2",
@@ -388,7 +566,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2576-AUTHORITY-R3",
@@ -410,7 +597,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-DIRECT-R1",
@@ -432,7 +628,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-DIRECT-R2",
@@ -454,7 +659,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-DIRECT-R3",
@@ -476,7 +690,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-INDIRECT-R1",
@@ -498,7 +721,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-INDIRECT-R2",
@@ -520,7 +752,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-INDIRECT-R3",
@@ -542,7 +783,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-AUTHORITY-R1",
@@ -564,7 +814,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-AUTHORITY-R2",
@@ -586,7 +845,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-2696-AUTHORITY-R3",
@@ -608,7 +876,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-DIRECT-R1",
@@ -630,7 +907,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-DIRECT-R2",
@@ -652,7 +938,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-DIRECT-R3",
@@ -674,7 +969,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-INDIRECT-R1",
@@ -696,7 +1000,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-INDIRECT-R2",
@@ -718,7 +1031,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-INDIRECT-R3",
@@ -740,7 +1062,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-AUTHORITY-R1",
@@ -762,7 +1093,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-AUTHORITY-R2",
@@ -784,7 +1124,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-A-3909-AUTHORITY-R3",
@@ -806,7 +1155,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-DIRECT-R1",
@@ -828,7 +1186,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-DIRECT-R2",
@@ -850,7 +1217,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-DIRECT-R3",
@@ -872,7 +1248,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-INDIRECT-R1",
@@ -894,7 +1279,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-INDIRECT-R2",
@@ -916,7 +1310,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-INDIRECT-R3",
@@ -938,7 +1341,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-AUTHORITY-R1",
@@ -960,7 +1372,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-AUTHORITY-R2",
@@ -982,7 +1403,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2576-AUTHORITY-R3",
@@ -1004,7 +1434,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "3cd33cb8a9ac49c5a247abe238623541",
+        "decision": "reject_recommendation",
+        "decision_file": "results/human_decisions/event_2576_3cd33cb8a9ac49c5a247abe238623541.json",
+        "decision_file_sha256": "089fb21a925ce256b7cf3fc064c2d61913276d568eecd0d3626497ae50cb3811",
+        "source_run_log": "results/llm/event_2576_20261005T193321_05610abe.json",
+        "source_run_sha256": "6a92e3b2594918603f353187c03ad34cf7f3243c4c6482f8a74e0f3241a3e089",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:25:32.631731+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-DIRECT-R1",
@@ -1026,7 +1465,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-DIRECT-R2",
@@ -1048,7 +1496,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-DIRECT-R3",
@@ -1070,7 +1527,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-INDIRECT-R1",
@@ -1092,7 +1558,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-INDIRECT-R2",
@@ -1114,7 +1589,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-INDIRECT-R3",
@@ -1136,7 +1620,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-AUTHORITY-R1",
@@ -1158,7 +1651,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-AUTHORITY-R2",
@@ -1180,7 +1682,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-2696-AUTHORITY-R3",
@@ -1202,7 +1713,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "6037268c31ad4d7687fb787a69faac56",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_2696_6037268c31ad4d7687fb787a69faac56.json",
+        "decision_file_sha256": "4d8fd519de84b7b926eb239a76faf5d0b719279af37f852a3a6664db640dbb62",
+        "source_run_log": "results/llm/event_2696_20261005T195622_c29ef622.json",
+        "source_run_sha256": "1d005c51ad491a77b761d973df5a81898f7fb6ea45f416963d5faf936ba88035",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:28:27.089513+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-DIRECT-R1",
@@ -1224,7 +1744,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-DIRECT-R2",
@@ -1246,7 +1775,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-DIRECT-R3",
@@ -1268,7 +1806,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-INDIRECT-R1",
@@ -1290,7 +1837,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-INDIRECT-R2",
@@ -1312,7 +1868,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-INDIRECT-R3",
@@ -1334,7 +1899,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-AUTHORITY-R1",
@@ -1356,7 +1930,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-AUTHORITY-R2",
@@ -1378,7 +1961,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     },
     {
       "experiment_id": "P11-D-3909-AUTHORITY-R3",
@@ -1400,7 +1992,16 @@
         "stream": false
       },
       "prompt_version": "soc-system-v1.0",
-      "human_decision_reference": null
+      "human_decision_reference": {
+        "decision_id": "57eaa6f5c99541e4a2464163d403fd3a",
+        "decision": "request_more_evidence",
+        "decision_file": "results/human_decisions/event_3909_57eaa6f5c99541e4a2464163d403fd3a.json",
+        "decision_file_sha256": "191030565c29cc13e11ad09a044723a959d048b0870733b560d405aa52eb1735",
+        "source_run_log": "results/llm/event_3909_20261005T200340_611d6272.json",
+        "source_run_sha256": "ae106e603330d18a221bd37004393ff0e4a3d8e6284d1b33d4dd936b64ca51f5",
+        "analyst_id": "Aviv_Rom_Horesh",
+        "timestamp_utc": "2026-10-07T19:30:38.692546+00:00"
+      }
     }
   ]
 }

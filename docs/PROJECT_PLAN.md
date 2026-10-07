@@ -937,7 +937,7 @@ Tasks
 [x] Save all baseline LLM inputs in unique JSON run logs.
 [x] Save all baseline raw/parsed LLM outputs and validation/fallback results.
 [x] Preserve supporting evidence and deterministic MITRE mappings separately.
-[ ] Record final human analyst decisions separately for the official evaluation.
+[x] Record final human analyst decisions separately for the official evaluation.
 [x] Define evidence-grounding scoring: the cross-condition S1-S7 manual rubric
     was frozen before official adversarial analysis and applied to all 27 Phase 9 runs.
 [x] Repeat baseline LLM runs to characterize observed response variability.
@@ -964,7 +964,9 @@ Phase 8 official baseline collection checkpoint (28 September 2026)
   experiments/prompt_injection/PHASE8_BASELINE_RESULTS.md.
   Preserve the nine original local JSON logs unchanged.
 - Phase 8 baseline collection and preliminary manual content review are
-  complete; official independent analyst decision records remain pending.
+  complete. Independent final human analyst decisions were subsequently
+  recorded separately for all three official evaluated incidents (2576,
+  2696, and 3909) during Phase 11, without modifying the original run logs.
   The cross-condition S1-S7 manual scoring rubric was subsequently frozen
   before official Phase 9 adversarial analysis. These are small descriptive
   observations from the existing synthetic test set, not independent
@@ -1158,12 +1160,39 @@ Recommended Record
 }
 ```
 Critical Checks
-[ ] Same paired event really uses identical telemetry.
-[ ] Supporting evidence is not overwritten by the LLM.
-[ ] LLM recommendation is stored independently.
-[ ] Human decision is stored independently.
-[ ] Attack type/condition is recorded.
-[ ] Model and experimental settings are recorded.
+[x] Same paired event really uses identical telemetry.
+[x] Supporting evidence is not overwritten by the LLM.
+[x] LLM recommendation is stored independently.
+[x] Human decision is stored independently.
+[x] Attack type/condition is recorded.
+[x] Model and experimental settings are recorded.
+Phase 11 completion checkpoint (7 October 2026)
+- Created experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json as
+  the auditable manifest for the frozen official experiment set.
+- The manifest contains 63 unique official experimental records:
+  9 Baseline, 27 Adversarial, and 27 Defended.
+- Every record has a unique experiment ID and preserves the source-run
+  reference and SHA-256 together with event, condition, attack type,
+  repetition, trusted-context hash, model, prompt version, and run settings.
+- Cross-condition telemetry integrity was verified for the three official
+  incidents: matched runs retain the same trusted telemetry/evidence identity.
+- Supporting evidence, LLM output, and human analyst decisions remain
+  structurally separate; the original LLM run logs were not rewritten.
+- Three independent final human analyst decision records were created,
+  one per official evaluated incident (2576, 2696, and 3909), under
+  results/human_decisions/.
+- Human decisions are incident-level records, not 63 separate analyst
+  judgments. The manifest links the applicable incident-level decision to
+  each official repetition and explicitly records this scope.
+- Event 2576 resulted in reject_recommendation after the defended input guard
+  rejected the untrusted narrative and withheld automated LLM output.
+- Events 2696 and 3909 resulted in request_more_evidence because both
+  detectors marked them anomalous while the available MITRE T1110 evidence
+  remained insufficient for confirmation; additional authentication evidence
+  was requested.
+- One additional Phase 10 run remains preserved but excluded from the
+  predefined 27-run defended denominator, as documented in the manifest.
+- Phase 11 experimental logging and auditability checks are complete.
 ---
 16. Phase 12 --- Evaluation
 A. Detection Evaluation
