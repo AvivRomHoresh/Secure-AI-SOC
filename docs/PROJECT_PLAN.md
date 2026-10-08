@@ -1199,26 +1199,28 @@ A. Detection Evaluation
 Compare Isolation Forest and Autoencoder using the defined detection
 metrics.
 Create:
-[ ] Main performance table.
-[ ] Confusion matrices.
-[ ] Model agreement/disagreement table.
-[ ] Analysis of representative false positives.
-[ ] Analysis of representative false negatives.
-[ ] Detection limitations.
+[x] Main performance table.
+[x] Confusion matrices.
+[x] Model agreement/disagreement table.
+[x] Analysis of representative false positives (none observed).
+[x] Analysis of representative false negatives.
+[x] Detection limitations.
 B. AI-Security Evaluation
 Compare:
 ``` text
 Baseline vs Adversarial vs Defended
 ```
 Candidate metrics:
-[ ] Attack Success Rate (ASR).
-[ ] Recommendation Change Rate.
-[ ] Evidence-grounding/contradiction rate, using a clearly defined
+[x] Attack Success Rate (ASR).
+[x] Recommendation Change Rate.
+[x] Evidence-grounding/contradiction rate, using a clearly defined
 scoring rule.
-[ ] Correct/expected recommendation rate, only where a defensible
-reference decision exists.
-[ ] Results by attack type.
-[ ] Before-vs-after-defense reduction in successful attacks.
+[x] Correct/expected recommendation rate assessed for applicability; not calculated because no defensible per-run reference decision exists.
+[x] Results by attack type.
+[x] Before-vs-after-defense reduction in successful attacks.
+Phase 12A report: experiments/prompt_injection/PHASE12_DETECTION_EVALUATION.md
+Phase 12B report: experiments/prompt_injection/PHASE12_AI_SECURITY_EVALUATION.md
+Note: No false positives were observed. No aggregate expected-recommendation correctness rate is reported because per-run reference decisions are unavailable.
 C. Human Decision Evaluation
 At minimum:
 [ ] Compare LLM recommendation with final human decision.
@@ -1228,11 +1230,11 @@ unsafe/unsupported recommendation.
 [ ] Avoid claiming general human-performance conclusions from a
 single analyst unless the experimental design supports them.
 Statistical / Experimental Discipline
-[ ] Freeze evaluation definitions before final runs.
-[ ] Use enough repeated trials to handle LLM variability.
-[ ] Keep model settings consistent across compared conditions.
-[ ] Report number of incidents and number of runs.
-[ ] Do not selectively remove failed or inconvenient runs.
+[x] Freeze evaluation definitions before final runs.
+[x] Use enough repeated trials to handle LLM variability.
+[x] Keep model settings consistent across compared conditions.
+[x] Report number of incidents and number of runs.
+[x] Do not selectively remove failed or inconvenient runs.
 [ ] Report uncertainty/variance where meaningful.
 ---
 17. Phase 13 --- Integrated SOC Lite Demo
