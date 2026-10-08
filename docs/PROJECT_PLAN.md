@@ -1234,7 +1234,9 @@ Statistical / Experimental Discipline
 [x] Keep model settings consistent across compared conditions.
 [x] Report number of incidents and number of runs.
 [x] Do not selectively remove failed or inconvenient runs.
-[ ] Report uncertainty/variance where meaningful.
+[x] Report uncertainty/variance where meaningful.
+
+Phase 12 statistical uncertainty report: experiments/prompt_injection/PHASE12_STATISTICAL_UNCERTAINTY.md
 ---
 17. Phase 13 --- Integrated SOC Lite Demo
 Goal
