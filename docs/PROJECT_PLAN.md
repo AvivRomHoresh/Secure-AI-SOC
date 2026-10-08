@@ -1223,12 +1223,11 @@ Phase 12B report: experiments/prompt_injection/PHASE12_AI_SECURITY_EVALUATION.md
 Note: No false positives were observed. No aggregate expected-recommendation correctness rate is reported because per-run reference decisions are unavailable.
 C. Human Decision Evaluation
 At minimum:
-[ ] Compare LLM recommendation with final human decision.
-[ ] Record analyst disagreement with AI.
-[ ] Identify cases where human review prevented an
-unsafe/unsupported recommendation.
-[ ] Avoid claiming general human-performance conclusions from a
-single analyst unless the experimental design supports them.
+[x] Compare available LLM recommendations with final human decisions using explicitly labeled cross-run, incident-level comparisons.
+[x] Record analyst disagreement with AI (event 2576) and broad operational alignment (events 2696 and 3909).
+[x] Evaluate human-review safety cases; no direct human prevention demonstrated because the designated source runs were rejected before model execution and unsafe Adversarial outputs were withheld automatically.
+[x] Avoid general human-performance conclusions: one analyst, three incident-level decisions, no independent human accuracy estimate.
+Phase 12C report: experiments/prompt_injection/PHASE12_HUMAN_DECISION_EVALUATION.md
 Statistical / Experimental Discipline
 [x] Freeze evaluation definitions before final runs.
 [x] Use enough repeated trials to handle LLM variability.
