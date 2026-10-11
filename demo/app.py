@@ -414,14 +414,18 @@ with tab7:
                     "Source run SHA-256: "
                     + decision_ref["source_run_sha256"]
                 )
-
                 additional = decision_data.get("additional_evidence_requested")
                 if additional:
                     st.subheader("Additional Evidence Requested")
-                    st.json(additional)
+
+                    if isinstance(additional, str):
+                        st.write(additional)
+                    else:
+                        st.json(additional)
 
                 with st.expander("Full Official Decision Record"):
                     st.json(decision_data)
+
 st.divider()
 st.caption(
     "Replay of frozen experiment records. "
