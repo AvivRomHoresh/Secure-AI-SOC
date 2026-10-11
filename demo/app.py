@@ -107,13 +107,14 @@ c.metric("Repetition", str(repetition))
 
 st.caption(f"Official experiment: {record['experiment_id']}")
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+tab1,tab2,tab3,tab4,tab5,tab6,tab7 = st.tabs([
     "Telemetry",
     "Detection & XAI",
     "MITRE",
     "AI Analyst",
     "Security & RAI",
     "Experiment Comparison",
+    "Human Decision",
 ])
 with tab1:
     st.subheader("Trusted Security Telemetry")
@@ -351,7 +352,76 @@ with tab6:
         "trusted evidence digest, not the validity of the LLM output. "
         "Attack success must be assessed using the frozen S5 rubric."
     )
+with tab7:
+    st.subheader("Human-in-the-Loop — Official Analyst Decision")
 
+    decisions = manifest.get("official_human_decisions", {})
+    decision_ref = decisions.get(str(event_id))
+
+    if not decision_ref:
+        st.info("No official human decision is recorded for this event.")
+    else:
+        decision_path = (ROOT / decision_ref["decision_file"]).resolve()
+        allowed_dir = (ROOT / "results/human_decisions").resolve()
+
+        if not decision_path.is_relative_to(allowed_dir):
+            st.error("Decision file path is outside the approved directory.")
+        else:
+            try:
+                decision_data = json.loads(
+                    decision_path.read_text(encoding="utf-8")
+                )
+            except (OSError, ValueError) as exc:
+                st.error(f"Unable to load analyst decision: {exc}")
+            else:
+                st.info(
+                    "This is the official event-level analyst decision. "
+                    "It is linked to its original source run, not to every "
+                    "experiment repetition displayed in this dashboard."
+                )
+
+                st.write("**Analyst:**", decision_data.get("analyst_id"))
+                st.write("**Decision:**", decision_data.get("decision"))
+                st.write("**Timestamp (UTC):**", decision_data.get("timestamp_utc"))
+
+                st.subheader("Decision Rationale")
+                st.write(decision_data.get("rationale", "Not recorded"))
+
+                st.subheader("Source Run & Security Status")
+                st.write(
+                    "**Source experiment condition:**",
+                    decision_data.get("experiment_condition")
+                )
+                st.write(
+                    "**Source validation status:**",
+                    decision_data.get("source_validation_status")
+                )
+                st.write(
+                    "**Automated recommendation withheld:**",
+                    decision_data.get("automated_recommendation_withheld")
+                )
+                st.write(
+                    "**Operational action executed:**",
+                    decision_data.get("operational_action_executed")
+                )
+
+                st.code(
+                    decision_ref["source_run_log"],
+                    language=None
+                )
+
+                st.caption(
+                    "Source run SHA-256: "
+                    + decision_ref["source_run_sha256"]
+                )
+
+                additional = decision_data.get("additional_evidence_requested")
+                if additional:
+                    st.subheader("Additional Evidence Requested")
+                    st.json(additional)
+
+                with st.expander("Full Official Decision Record"):
+                    st.json(decision_data)
 st.divider()
 st.caption(
     "Replay of frozen experiment records. "
