@@ -36,7 +36,7 @@ From the project root:
 
 ```cmd
 
-.venv\\Scripts\\python.exe -m pip install -r requirements.txt
+.venv\\\\Scripts\\\\python.exe -m pip install -r requirements.txt
 
 ```
 
@@ -52,7 +52,7 @@ From the project root:
 
 ```cmd
 
-.venv\\Scripts\\python.exe -m streamlit run demo\\app.py
+.venv\\\\Scripts\\\\python.exe -m streamlit run demo\\\\app.py
 
 ```
 
@@ -108,7 +108,7 @@ The manifest is located at:
 
 
 
-`experiments/prompt\_injection/PHASE11\_EXPERIMENT\_MANIFEST.json`
+`experiments/prompt\\\_injection/PHASE11\\\_EXPERIMENT\\\_MANIFEST.json`
 
 
 
@@ -120,9 +120,31 @@ Recorded run logs are stored under:
 
 
 
-Offline replay requires these files to remain available locally. This is not a standalone packaged dataset.
+The dashboard supports an independent local fallback dataset under `demo/fallback/`.
 
 
+
+The fallback package contains a copy of the official Phase 11 experiment manifest and all 63 recorded run logs, preserving their original relative paths.
+
+
+
+When an original manifest or run log is unavailable, the dashboard automatically attempts to load its fallback copy.
+
+
+
+Each run log is verified against the SHA-256 hash recorded in the selected manifest before it is used. Files with mismatched hashes are rejected.
+
+
+
+The fallback mechanism also supports interactive human-review decisions. These decisions are stored separately under `demo/decisions/` and do not modify official experimental records.
+
+
+
+The fallback package enables offline replay without retraining detection models or running a live LLM. It does not replace the official Phase 11 experimental artifacts or Phase 12 evaluation reports.
+
+
+
+\*\*Integrity limitation:\*\* The fallback manifest is a local copy of the official manifest; its authenticity is not independently established by the dashboard when the original manifest is unavailable.
 
 \## Human-in-the-Loop
 
@@ -132,7 +154,7 @@ Official analyst decisions are read from:
 
 
 
-`results/human\_decisions/`
+`results/human\\\_decisions/`
 
 
 
@@ -188,11 +210,9 @@ Relevant evaluation reports are located under:
 
 
 
-`experiments/prompt\_injection/`
+`experiments/prompt\\\_injection/`
 
 
 
 The interactive dashboard is a presentation and review interface, not a replacement for the frozen experimental evaluation.
-
-
 

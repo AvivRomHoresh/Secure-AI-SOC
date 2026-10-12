@@ -10,6 +10,48 @@ import streamlit as st
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json"
 
+def read_verified_run(record):
+    relative_path = Path(record["source_run_log"])
+
+    if relative_path.is_absolute() or ".." in relative_path.parts:
+        raise ValueError("Invalid experiment log path.")
+
+    if relative_path.parts[:2] != ("results", "llm"):
+        raise ValueError("Unexpected experiment log directory.")
+
+    expected_hash = record["source_run_sha256"]
+
+    candidates = [
+        ROOT / relative_path,
+        ROOT / "demo" / "fallback" / relative_path,
+    ]
+
+    for path in candidates:
+        path = path.resolve()
+
+        if not path.is_file():
+            continue
+
+        content = path.read_bytes()
+
+        if hashlib.sha256(content).hexdigest() != expected_hash:
+            continue
+
+        data = json.loads(content.decode("utf-8"))
+
+        if (
+            data.get("event_id") != record["event_id"]
+            or data.get("experiment_condition") != record["condition"]
+        ):
+            raise ValueError("Run does not match the selected experiment.")
+
+        return data, path, content
+
+    raise ValueError(
+        f"No verified run available for {record['experiment_id']}."
+    )
+
+
 def save_demo_decision(record, analyst, decision, rationale, additional):
     allowed_decisions = {
         "accept_recommendation",
@@ -29,19 +71,10 @@ def save_demo_decision(record, analyst, decision, rationale, additional):
     if decision == "request_more_evidence" and not additional.strip():
         raise ValueError("Additional evidence must be specified.")
 
-    source_path = (ROOT / record["source_run_log"]).resolve()
-    allowed_dir = (ROOT / "results/llm").resolve()
 
-    if not source_path.is_relative_to(allowed_dir):
-        raise ValueError("Source run is outside the approved directory.")
-
-    source_bytes = source_path.read_bytes()
+    source_data, source_path, source_bytes = read_verified_run(record)
     source_hash = hashlib.sha256(source_bytes).hexdigest()
 
-    if source_hash != record["source_run_sha256"]:
-        raise ValueError("Source run integrity verification failed.")
-
-    source_data = json.loads(source_bytes)
 
     if (
         source_data.get("event_id") != record["event_id"]
@@ -105,21 +138,39 @@ st.title("🛡️ Secure & Explainable AI-Powered SOC")
 st.caption("Phase 13 | Official Experiment Replay | Read-only")
 
 
+
 @st.cache_data
 def load_manifest():
-    return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    candidates = [
+        MANIFEST_PATH,
+        ROOT / "demo" / "fallback" / "PHASE11_EXPERIMENT_MANIFEST.json",
+    ]
 
+    for path in candidates:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+
+            if not isinstance(data.get("records"), list):
+                raise ValueError("Invalid manifest records.")
+
+            return data
+        except (OSError, ValueError, TypeError):
+            continue
+
+    raise ValueError(
+        "Neither the official nor the fallback manifest is available."
+    )
 
 def load_run(record):
-    relative_path = Path(record["source_run_log"])
-    path = (ROOT / relative_path).resolve()
+    data, _, _ = read_verified_run(record)
+    return data
 
-    # Only read experiment logs inside the expected directory.
-    allowed_dir = (ROOT / "results/llm").resolve()
-    if not path.is_relative_to(allowed_dir):
-        raise ValueError("Run log path is outside the approved directory.")
 
-    return json.loads(path.read_text(encoding="utf-8"))
+    raise ValueError(
+        f"No valid original or fallback log for experiment "
+        f"{record['experiment_id']}."
+    )
+
 
 
 try:

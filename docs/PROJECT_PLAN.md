@@ -1284,13 +1284,32 @@ Adversarial.
 Defended.
 The audience should be able to see that the telemetry is unchanged.
 Tasks
-[ ] Build a lightweight UI/dashboard or clear CLI/web demo.
-[ ] Display the event ID and condition.
-[ ] Display evidence separately from LLM narrative.
-[ ] Display attack context only where appropriate.
-[ ] Display RAI/evidence-validation result.
-[ ] Allow/record a human decision.
-[ ] Prepare a deterministic fallback/demo dataset in case live
+[x] Build a lightweight UI/dashboard or clear CLI/web demo.
+[x] Display the event ID and condition.
+[x] Display evidence separately from LLM narrative.
+[x] Display attack context only where appropriate.
+[x] Display RAI/evidence-validation result.
+[x] Allow/record a human decision.
+[x] Prepare a deterministic fallback/demo dataset in case live
+components fail.
+
+Phase 13 Verification Notes (2026-10-12)
+- Streamlit dashboard implemented with seven SOC workflow tabs.
+- Interactive human-review decisions are stored separately under demo/decisions/.
+- Official Phase 11 records are replayed without retraining or live LLM execution.
+- All 63 official run logs are locally available.
+- SHA-256 integrity verification passed for all 63/63 records against the official manifest.
+
+- Independent offline fallback dataset prepared under demo/fallback/, including the Phase 11 manifest and all 63 recorded run logs.
+- SHA-256 integrity verification passed for all 63/63 fallback logs against the experiment manifest.
+- Automatic fallback loading verified for both the experiment manifest and individual run logs.
+- Human-in-the-Loop decision saving successfully tested using fallback data in an isolated temporary directory.
+- Security checks verified: source integrity, event consistency, recommendation-withholding protection, and no operational SOC action.
+- Fallback manifest authenticity is not independently established when the original manifest is unavailable.
+- Demo README updated to document fallback behavior, integrity checks, and research limitations.
+- Dashboard code passed Python syntax validation.
+- Dashboard implementation and README were pushed in commit ef0b4c0.
+
 components fail.
 ---
 18. Phase 14 --- Optional NVIDIA Morpheus Extension
