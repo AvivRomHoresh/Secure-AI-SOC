@@ -1340,6 +1340,8 @@ Do not sacrifice the Baseline/Adversarial/Defended experiment in order
 to add Morpheus.
 ---
 19. Phase 15 --- Final Results and Conclusions
+Phase 15 status: COMPLETED (2026-10-12). Final synthesis: docs/PHASE15_FINAL_RESULTS_AND_CONCLUSIONS.md. No new experiments or changes to frozen evaluations.
+
 Results Must Answer the Research Question
 The final results section should not simply state that the application
 works.
