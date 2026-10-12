@@ -1,11 +1,99 @@
 
+import hashlib
 import json
+import re
+import uuid
+from datetime import datetime, timezone
 from pathlib import Path
-
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json"
+
+def save_demo_decision(record, analyst, decision, rationale, additional):
+    allowed_decisions = {
+        "accept_recommendation",
+        "reject_recommendation",
+        "request_more_evidence",
+    }
+
+    if decision not in allowed_decisions:
+        raise ValueError("Invalid decision.")
+
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", analyst):
+        raise ValueError("Invalid analyst ID.")
+
+    if not rationale.strip():
+        raise ValueError("Analyst rationale is required.")
+
+    if decision == "request_more_evidence" and not additional.strip():
+        raise ValueError("Additional evidence must be specified.")
+
+    source_path = (ROOT / record["source_run_log"]).resolve()
+    allowed_dir = (ROOT / "results/llm").resolve()
+
+    if not source_path.is_relative_to(allowed_dir):
+        raise ValueError("Source run is outside the approved directory.")
+
+    source_bytes = source_path.read_bytes()
+    source_hash = hashlib.sha256(source_bytes).hexdigest()
+
+    if source_hash != record["source_run_sha256"]:
+        raise ValueError("Source run integrity verification failed.")
+
+    source_data = json.loads(source_bytes)
+
+    if (
+        source_data.get("event_id") != record["event_id"]
+        or source_data.get("experiment_condition") != record["condition"]
+    ):
+        raise ValueError("Source run does not match the selected experiment.")
+
+    withheld = (
+        bool(source_data.get("fallback"))
+        or source_data.get("validation_status")
+        != "heuristic_checks_passed_requires_human_review"
+        or source_data.get("parsed_output") is None
+    )
+
+    if withheld and decision == "accept_recommendation":
+        raise ValueError("A withheld recommendation cannot be accepted.")
+
+    decision_id = uuid.uuid4().hex
+
+    output = {
+        "schema_version": "phase13-demo-human-decision-v1",
+        "decision_id": decision_id,
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "event_id": record["event_id"],
+        "experiment_id": record["experiment_id"],
+        "analyst_id": analyst,
+        "source_run_log": record["source_run_log"],
+        "source_run_sha256": source_hash,
+        "experiment_condition": record["condition"],
+        "source_validation_status": source_data.get("validation_status"),
+        "automated_recommendation_withheld": withheld,
+        "decision": decision,
+        "rationale": rationale.strip(),
+        "additional_evidence_requested": (
+            additional.strip() if decision == "request_more_evidence" else None
+        ),
+        "operational_action_executed": False,
+    }
+
+    destination_dir = ROOT / "demo/decisions"
+    destination_dir.mkdir(parents=True, exist_ok=True)
+
+    destination = destination_dir / f"event_{record['event_id']}_{decision_id}.json"
+
+    if hashlib.sha256(source_path.read_bytes()).hexdigest() != source_hash:
+        raise ValueError("Source run changed during review.")
+
+    with destination.open("x", encoding="utf-8") as file:
+        json.dump(output, file, indent=2, ensure_ascii=False)
+        file.write("\n")
+
+    return destination.relative_to(ROOT)
 
 st.set_page_config(
     page_title="Secure AI SOC",
@@ -425,6 +513,85 @@ with tab7:
 
                 with st.expander("Full Official Decision Record"):
                     st.json(decision_data)
+st.subheader("Interactive Human Review — Demo Only")
+st.info(
+    "You are reviewing the currently selected experiment. "
+    "Verify the run details before recording a human decision."
+)
+
+review_col1, review_col2, review_col3 = st.columns(3)
+
+with review_col1:
+    st.metric("Selected Event", str(event_id))
+
+with review_col2:
+    st.metric("Experiment Condition", condition.title())
+
+with review_col3:
+    st.metric(
+        "Validation Status",
+        str(run.get("validation_status", "Unknown"))
+    )
+
+st.caption(
+    f"Source Experiment: {record['experiment_id']} | "
+    f"Attack Type: {attack_type} | "
+    f"Repetition: {repetition}"
+)
+
+recommendation_withheld = (
+    bool(run.get("fallback"))
+    or run.get("validation_status")
+    != "heuristic_checks_passed_requires_human_review"
+    or run.get("parsed_output") is None
+)
+
+if recommendation_withheld:
+    st.warning(
+        "The automated recommendation was withheld. "
+        "Accept Recommendation is disabled for this run."
+    )
+
+decision_options = [
+    "reject_recommendation",
+    "request_more_evidence",
+]
+
+if not recommendation_withheld:
+    decision_options.insert(0, "accept_recommendation")
+
+with st.form("demo_human_decision_form"):
+    analyst = st.text_input("Analyst ID", value="Demo_Analyst")
+
+    selected_decision = st.selectbox(
+        "Human Decision",
+        decision_options
+    )
+
+    rationale = st.text_area(
+        "Decision Rationale (required)"
+    )
+
+    additional = st.text_area(
+        "Additional Evidence Requested "
+        "(required only for request_more_evidence)"
+    )
+
+    submitted = st.form_submit_button("Save Demo Decision")
+
+    if submitted:
+        try:
+            destination = save_demo_decision(
+                record,
+                analyst.strip(),
+                selected_decision,
+                rationale,
+                additional
+            )
+        except (OSError, ValueError, KeyError) as exc:
+            st.error(f"Decision was not saved: {exc}")
+        else:
+            st.success(f"Demo decision saved: {destination}")
 
 st.divider()
 st.caption(
