@@ -144,14 +144,14 @@ Potential extensions include: evaluation on representative real SOC telemetry wi
 
 ## 14. Authoritative project evidence
 
-- `experiments/prompt_injection/PHASE12_EVALUATION_PROTOCOL.md`
+- `experiments/prompt_injection/EVALUATION_PROTOCOL.md`
 - `experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json`
-- `experiments/prompt_injection/PHASE12_DETECTION_EVALUATION.md`
-- `experiments/prompt_injection/PHASE12_AI_SECURITY_EVALUATION.md`
-- `experiments/prompt_injection/PHASE12_HUMAN_DECISION_EVALUATION.md`
-- `experiments/prompt_injection/PHASE12_STATISTICAL_UNCERTAINTY.md`
-- `experiments/prompt_injection/PHASE8_BASELINE_RESULTS.md`
-- `experiments/prompt_injection/PHASE9_ADVERSARIAL_RESULTS.md`
+- `experiments/prompt_injection/DETECTION_EVALUATION.md`
+- `experiments/prompt_injection/AI_SECURITY_EVALUATION.md`
+- `experiments/prompt_injection/HUMAN_DECISION_EVALUATION.md`
+- `experiments/prompt_injection/STATISTICAL_UNCERTAINTY.md`
+- `experiments/prompt_injection/BASELINE_RESULTS.md`
+- `experiments/prompt_injection/ADVERSARIAL_RESULTS.md`
 - `experiments/prompt_injection/PHASE10_DEFENDED_RESULTS.md`
 - `docs/models/XAI_ANALYSIS.md`
 - `docs/mitre/MITRE_MAPPING_DESIGN.md` (historical design; consult implementation notes)

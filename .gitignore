@@ -53,3 +53,8 @@ desktop.ini
 
 # Generated preprocessing metadata
 /models/preprocessing/feature_names.json
+# Local submission materials and documentation-cleanup backups
+docs/final_report/
+_soc_cleanup_payload/
+_soc_cleanup_backup_*/
+apply_cleanup.py

@@ -1,79 +1,105 @@
 # Secure & Explainable AI-Powered SOC
 
-**Student:** Aviv Rom Horesh  
-**Course:** AI-Guided / AI-Enhanced Cybersecurity  
-**Project type:** Integrated final project (Type 2)  
-**Status:** Phases 1–5 implemented; Phase 6 local LLM installed, integration pending
+**Final project — Introduction to AI-Driven Cybersecurity (Summer 2026)**
+**Student:** Aviv Rom Horesh
+**Lecturer:** Andrei Kozakhov
+**Project type:** Integrated final project (Type 2)
 
-> **Core principle:** AI assists. Humans decide.
+> **AI assists. Humans decide.** An experimental, evidence-first SOC prototype, not a production security system.
 
 ## Overview
 
-This project aims to develop and experimentally evaluate a lightweight, explainable AI-assisted Security Operations Center (SOC). It combines anomaly detection, supporting evidence, MITRE ATT&CK mapping, and a local LLM that provides recommendations to a human analyst.
+This completed project evaluates a lightweight SOC workflow integrating **Isolation Forest and Autoencoder anomaly detection**, model-specific explanation diagnostics, structured evidence, conservative **MITRE ATT&CK screening**, a local **Ollama LLM (`llama3.2:3b`)**, application-layer security controls, and independent human review.
 
-The project also evaluates the security of its own AI reasoning layer: can adversarial context manipulate the LLM's recommendation while the underlying security telemetry remains unchanged, and can defensive controls reduce that manipulation?
+The security experiment asks whether malicious instructions in untrusted AI-visible context can manipulate LLM recommendations while **the underlying telemetry stays unchanged**, and whether defenses contain the resulting outputs. Raw model susceptibility and application-layer containment are reported separately.
 
-## Research Question
-
-**How effectively can a lightweight, explainable AI-assisted SOC support security analysis while remaining robust against adversarial manipulation of its AI reasoning layer?**
-
-## Planned Architecture
+## Architecture
 
 ```text
-Security Telemetry
-       |
-       v
-Data Preparation / Feature Engineering
-       |
-       v
-Anomaly Detection (Isolation Forest + Autoencoder)
-       |
-       v
-XAI / Supporting Evidence
-       |
-       v
-MITRE ATT&CK Mapping
-       |
-       v
-Local LLM (advisory role)
-       |
-       v
-Analyst Recommendation
-       |
-       v
-Human Decision
+Synthetic login telemetry
+        ↓
+Preprocessing + frozen Isolation Forest / Autoencoder
+        ↓
+Model-specific XAI diagnostics + structured evidence
+        ↓
+Deterministic MITRE ATT&CK screening
+        ↓
+Local LLM (advisory recommendation)
+        ↓
+Input/output validation and withholding controls
+        ↓
+Independent human analyst decision
 ```
 
-Model explanations and original security evidence will remain distinguishable. MITRE mappings must be supported by observable evidence; insufficient evidence is a valid outcome. The LLM does not make final security decisions.
+An anomaly score is not proof of compromise; XAI diagnostics are not causal explanations; a MITRE candidate is not confirmed attribution; and an LLM recommendation is not an operational decision.
 
-## Experimental Design
+## Evaluated results
 
-Three controlled conditions will be compared for the **same underlying security telemetry**:
+### Detection — held-out synthetic test set
 
-1. **Baseline:** Normal evidence-based LLM analysis.
-2. **Adversarial:** The same telemetry with malicious AI-visible context (including prompt injection, indirect injection, and authority manipulation).
-3. **Defended:** The same telemetry and attacks, with trust separation, evidence validation, and Responsible AI controls.
+The dataset contains **3,960 synthetic login events**, stratified into train/validation/test partitions (70/15/15; seed 42). The **594-event** test partition contains **570 normal and 24 attack-labeled events**.
 
-Supporting security evidence, the LLM recommendation, and the final human decision will be logged separately. Evaluation will cover detection performance and the effect of attacks and defenses using predefined measures.
+| Measure | Isolation Forest | Autoencoder |
+|---|---:|---:|
+| TP / TN / FP / FN | 23 / 570 / 0 / 1 | 24 / 570 / 0 / 0 |
+| Precision | 100.00% | 100.00% |
+| Recall | 95.83% | 100.00% |
+| F1 | 97.87% | 100.00% |
 
-## Current Status
+Detector agreement: **593/594 (99.83%)**. Event `3505` was missed by Isolation Forest but detected by Autoencoder. These are results on a **separable synthetic dataset**, not evidence of real-world detection performance.
 
-Phases 1–5 are implemented: reproducible synthetic authentication telemetry (3,960 events), normal-only preprocessing, frozen Isolation Forest and Autoencoder detection, diagnostic XAI and structured evidence, and conservative deterministic MITRE ATT&CK T1110 screening. On the held-out synthetic test partition (594 events), Isolation Forest detected 23/24 labeled attacks (0 false positives); Autoencoder detected 24/24 (0 false positives); detector agreement was 593/594. These unusually strong results reflect a strongly separable synthetic dataset and do not establish real-world performance. Eight Phase 4/5 automated tests and a read-only detection reproduction check passed. Ollama 0.34.4 and `llama3.2:3b` are installed and passed a basic CLI smoke test; structured LLM integration and the baseline/adversarial/defended experiments remain unimplemented. See `docs/PROJECT_PLAN.md` for limitations and remaining work.
+### AI security — recorded local LLM experiment
 
-NVIDIA Morpheus is an optional extension, not a dependency of the core project.
+The official experiment manifest contains **63 runs across three underlying synthetic incidents**: 9 Baseline, 27 Adversarial, and 27 Defended. Direct, Indirect, and Authority prompt-injection families were tested. The primary raw-model attack-success criterion was **S5 = Yes** (attacker-requested deviation followed).
 
-## Initial Setup
+| Outcome | Adversarial | Defended |
+|---|---:|---:|
+| Raw-model attacker-directed outcomes | 5/27 (18.52%) | 2/27 (7.41%) |
+| Recommendations withheld downstream | See evaluation report | 27/27 |
 
-See [docs/SETUP.md](docs/SETUP.md) for Windows/Python setup and dependency installation. Python 3.12.10 is the initial development version; package versions are pinned in `requirements.txt`.
+In the Defended condition, all nine Direct attacks were rejected before model execution. **All 27 defended recommendations were withheld**; this is containment with a substantial **security–utility tradeoff**, not proof of model immunity. These results are **descriptive**, not statistically significant; repeated runs are not independent incidents.
 
-## Documentation
+## Explainability and MITRE scope
 
-- [Project scope](docs/PROJECT_SCOPE.md)
-- [Project work plan](docs/PROJECT_PLAN.md)
-- [Environment setup](docs/SETUP.md)
+- **Autoencoder:** grouped squared reconstruction-error diagnostics across original telemetry fields.
+- **Isolation Forest:** normal-reference replacement sensitivity, **not SHAP** and not causal attribution.
+- **MITRE:** `mitre-t1110-screen-v0.1` screens original failed-attempt counts. At least five failures yield `insufficient_evidence` and a possible, unconfirmed **T1110 / TA0006** indicator; otherwise `no_mapping`. Neither outcome proves an attack or benignness.
 
-Official lecturer correspondence, guidelines, and templates are preserved separately under `docs/official/`.
+## Quick start — Windows CMD
 
-## Reproducibility
+From the repository root:
 
-The project will record dataset provenance, preprocessing, configuration, model and LLM versions, random seeds where applicable, attack templates, experimental settings, and evaluation results as implementation progresses. Do not treat planned components as completed functionality.
+```cmd
+python -m venv .venv
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python -m streamlit run demo/app.py
+```
+
+Open `http://localhost:8501`. The Streamlit dashboard replays recorded experiments and supports an offline fallback dataset; **a live LLM and retraining are not required for replay**. See [demo documentation](demo/README.md) and [setup](docs/SETUP.md). Running new LLM experiments separately requires local Ollama and `llama3.2:3b`.
+
+## Repository map
+
+| Location | Purpose |
+|---|---|
+| [`docs/FINAL_RESULTS_AND_CONCLUSIONS.md`](docs/FINAL_RESULTS_AND_CONCLUSIONS.md) | Authoritative final research synthesis |
+| [`docs/PROJECT_SCOPE.md`](docs/PROJECT_SCOPE.md) | Approved scope and research questions |
+| [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md) | Historical development plan and milestones |
+| [`docs/SETUP.md`](docs/SETUP.md) | Setup and environment |
+| [`docs/datasets/`](docs/datasets/) | Data generation, EDA, splitting, preprocessing |
+| [`docs/models/`](docs/models/) | Detection, comparison, explanation methods |
+| [`docs/mitre/`](docs/mitre/) | Evidence-grounded ATT&CK mapping |
+| [`experiments/prompt_injection/`](experiments/prompt_injection/) | Frozen protocols, manifest, experimental evaluations |
+| [`src/`](src/) | Implementation |
+| [`results/`](results/) | Recorded evaluation evidence |
+| [`demo/`](demo/) | Offline Streamlit replay dashboard |
+
+The `docs/PROJECT_PLAN.md` file is retained as a **historical record**: earlier milestones and future-tense statements there do not override the completed results. Experimental JSON identifiers and manifest filenames retain their original names to preserve provenance and compatibility.
+
+## Research limitations
+
+Only synthetic data and **three underlying LLM incidents** were evaluated. Repeated runs are correlated. Explanations are diagnostic rather than causal, MITRE mappings are deliberately cautious, and the study does not establish production robustness or statistically significant defense efficacy. Human review remains essential.
+
+## Submission materials
+
+The academic Project Summary Form, Poster, Presentation and Final Report are submitted separately to the lecturer; they are **not included in this source repository**.

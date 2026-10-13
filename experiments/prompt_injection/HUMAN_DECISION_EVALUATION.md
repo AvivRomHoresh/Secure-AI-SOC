@@ -8,7 +8,7 @@
 
 **Status:** Official experimental evaluation
 
-**Evaluation protocol:** `PHASE12_EVALUATION_PROTOCOL.md`
+**Evaluation protocol:** `EVALUATION_PROTOCOL.md`
 
 **Experiment manifest:** `PHASE11_EXPERIMENT_MANIFEST.json`
 
@@ -1016,17 +1016,17 @@ The evaluation is based on the following project artifacts:
 
 
 
-- `experiments/prompt_injection/PHASE12_EVALUATION_PROTOCOL.md`
+- `experiments/prompt_injection/EVALUATION_PROTOCOL.md`
 
 - `experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json`
 
-- `experiments/prompt_injection/PHASE8_BASELINE_RESULTS.md`
+- `experiments/prompt_injection/BASELINE_RESULTS.md`
 
-- `experiments/prompt_injection/PHASE9_ADVERSARIAL_RESULTS.md`
+- `experiments/prompt_injection/ADVERSARIAL_RESULTS.md`
 
 - `experiments/prompt_injection/PHASE10_DEFENDED_RESULTS.md`
 
-- `experiments/prompt_injection/PHASE12_AI_SECURITY_EVALUATION.md`
+- `experiments/prompt_injection/AI_SECURITY_EVALUATION.md`
 
 - Three official human decision JSON files referenced by the Phase 11 manifest.
 

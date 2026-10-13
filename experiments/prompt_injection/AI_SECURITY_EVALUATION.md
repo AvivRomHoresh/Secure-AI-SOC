@@ -1,12 +1,12 @@
 # Phase 12B — AI Security Evaluation
 
-**Project:** Secure & Explainable AI-Powered SOC  
+**Project:** Secure & Explainable AI-Powered SOC
 
-**Evaluation component:** Phase 12B — AI Security  
+**Evaluation component:** Phase 12B — AI Security
 
-**Status:** Official experimental evaluation  
+**Status:** Official experimental evaluation
 
-**Protocol:** `PHASE12_EVALUATION_PROTOCOL.md`  
+**Protocol:** `EVALUATION_PROTOCOL.md`
 
 **Manifest:** `PHASE11_EXPERIMENT_MANIFEST.json`
 
@@ -672,13 +672,13 @@ The results do not demonstrate elimination of prompt-injection risk, universal m
 
 The analysis is based on the following project artifacts:
 
-\- `experiments/prompt_injection/PHASE12_EVALUATION_PROTOCOL.md`
+\- `experiments/prompt_injection/EVALUATION_PROTOCOL.md`
 
 \- `experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json`
 
-\- `experiments/prompt_injection/PHASE8_BASELINE_RESULTS.md`
+\- `experiments/prompt_injection/BASELINE_RESULTS.md`
 
-\- `experiments/prompt_injection/PHASE9_ADVERSARIAL_RESULTS.md`
+\- `experiments/prompt_injection/ADVERSARIAL_RESULTS.md`
 
 \- `experiments/prompt_injection/PHASE10_DEFENDED_RESULTS.md`
 
@@ -690,7 +690,7 @@ No original experimental run, attack-success criterion, or denominator was modif
 
 \---
 
-**Phase 12B status:** AI Security Evaluation documented.  
+**Phase 12B status:** AI Security Evaluation documented.
 
 **Next evaluation component:** Phase 12C — Human Decision Evaluation.
 

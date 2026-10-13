@@ -1,218 +1,47 @@
-\# Secure AI SOC — Integrated SOC Lite Dashboard
+# Secure AI SOC — Integrated SOC Lite Dashboard
 
+## Overview
 
+This Streamlit dashboard is an **offline replay and review interface** for the Secure & Explainable AI-Powered SOC project. It presents recorded telemetry, detector predictions, explanation diagnostics, MITRE ATT&CK screening, LLM recommendations, defense outcomes, and human decisions.
 
-\## Overview
+It does **not** execute live operational SOC actions or automatically retrain detectors or rerun LLM experiments.
 
+## Run on Windows CMD
 
-
-This Streamlit dashboard provides an interactive demonstration of the Secure \& Explainable AI-Powered SOC final project.
-
-
-
-The dashboard replays recorded security experiments and presents detection results, explainability evidence, MITRE ATT\&CK mappings, AI analyst outputs, security validation, and human review decisions.
-
-
-
-\## Requirements
-
-
-
-\- Python virtual environment
-
-\- Dependencies listed in the project-root `requirements.txt`
-
-\- Existing Phase 11 experiment manifest and recorded run logs
-
-
-
-\## Installation
-
-
-
-From the project root:
-
-
+From the project root, after installing dependencies:
 
 ```cmd
-
-.venv\\\\Scripts\\\\python.exe -m pip install -r requirements.txt
-
+.venv\Scripts\activate
+python -m streamlit run demo/app.py
 ```
 
+Open `http://localhost:8501`.
 
+## Dashboard sections
 
-\## Run the Dashboard
+1. **Telemetry** — trusted security event data.
+2. **Detection & XAI** — frozen detector outputs, disagreement, supporting diagnostics.
+3. **MITRE** — conservative evidence-based ATT&CK screening.
+4. **AI Analyst** — recorded LLM output, validation and fallback.
+5. **Security & RAI** — attack-defense controls and human-oversight rules.
+6. **Experiment Comparison** — matched Baseline, Adversarial and Defended conditions.
+7. **Human Decision** — official event-level decisions and a separate interactive review form.
 
+## Experiment provenance and fallback
 
+The official experiment contains **63 runs**: 9 Baseline, 27 Adversarial and 27 Defended, spanning **three underlying incidents**. The primary manifest is:
 
-From the project root:
+`experiments/prompt_injection/PHASE11_EXPERIMENT_MANIFEST.json`
 
+Recorded run logs are under `results/llm/`. The `demo/fallback/` directory contains a copy of the manifest and recorded logs to support replay if primary files are unavailable. Run logs are checked against SHA-256 hashes recorded in the selected manifest; this does **not** independently authenticate a fallback manifest.
 
+Interactive analyst decisions are saved under `demo/decisions/` and **must not be included in official experiment counts**. Official decisions are under `results/human_decisions/`. The form prevents acceptance of withheld recommendations; additional-evidence requests require a rationale.
 
-```cmd
+## Limitations
 
-.venv\\\\Scripts\\\\python.exe -m streamlit run demo\\\\app.py
+- Replay is not a new experimental execution.
+- Prompt-injection outcomes are descriptive and specific to the synthetic experiment.
+- Downstream withholding does not mean the raw LLM resisted manipulation.
+- The dashboard is a research and presentation tool, not a production SOC.
 
-```
-
-
-
-Open http://localhost:8501 in a browser.
-
-
-
-\## Dashboard Sections
-
-
-
-1\. \*\*Telemetry\*\* — Recorded security event and trusted telemetry.
-
-2\. \*\*Detection \& XAI\*\* — Isolation Forest and Autoencoder results, agreement, and explainability evidence.
-
-3\. \*\*MITRE\*\* — Evidence-based MITRE ATT\&CK mapping.
-
-4\. \*\*AI Analyst\*\* — Recorded LLM output, recommendation, validation status, and fallback information.
-
-5\. \*\*Security \& RAI\*\* — Prompt-injection defenses, validation, and responsible-AI controls.
-
-6\. \*\*Experiment Comparison\*\* — Baseline, adversarial, and defended results for matching telemetry.
-
-7\. \*\*Human Decision\*\* — Official event-level analyst decisions and their supporting evidence.
-
-
-
-An additional interactive human-review form supports demonstration decisions without changing official experimental results.
-
-
-
-\## Offline Replay
-
-
-
-The dashboard uses existing local Phase 11 experiment records rather than requiring a live LLM or retraining the detection models.
-
-
-
-The recorded dataset contains 63 official runs:
-
-\- 9 baseline
-
-\- 27 adversarial
-
-\- 27 defended
-
-
-
-The manifest is located at:
-
-
-
-`experiments/prompt\\\_injection/PHASE11\\\_EXPERIMENT\\\_MANIFEST.json`
-
-
-
-Recorded run logs are stored under:
-
-
-
-`results/llm/`
-
-
-
-The dashboard supports an independent local fallback dataset under `demo/fallback/`.
-
-
-
-The fallback package contains a copy of the official Phase 11 experiment manifest and all 63 recorded run logs, preserving their original relative paths.
-
-
-
-When an original manifest or run log is unavailable, the dashboard automatically attempts to load its fallback copy.
-
-
-
-Each run log is verified against the SHA-256 hash recorded in the selected manifest before it is used. Files with mismatched hashes are rejected.
-
-
-
-The fallback mechanism also supports interactive human-review decisions. These decisions are stored separately under `demo/decisions/` and do not modify official experimental records.
-
-
-
-The fallback package enables offline replay without retraining detection models or running a live LLM. It does not replace the official Phase 11 experimental artifacts or Phase 12 evaluation reports.
-
-
-
-\*\*Integrity limitation:\*\* The fallback manifest is a local copy of the official manifest; its authenticity is not independently established by the dashboard when the original manifest is unavailable.
-
-\## Human-in-the-Loop
-
-
-
-Official analyst decisions are read from:
-
-
-
-`results/human\\\_decisions/`
-
-
-
-The interactive demonstration form writes new decisions separately to:
-
-
-
-`demo/decisions/`
-
-
-
-Demo decisions must not be included in official experiment counts or evaluation metrics.
-
-
-
-The form records the analyst ID, decision, rationale, source-run reference, SHA-256 hash, validation status, and whether an automated recommendation was withheld.
-
-
-
-Accepting a withheld recommendation is blocked. Requests for additional evidence require an explanation of the evidence needed.
-
-
-
-The dashboard does not execute operational SOC actions.
-
-
-
-\## Security and Research Limitations
-
-
-
-\- The dashboard replays previously recorded outputs; it does not independently generate new LLM responses.
-
-\- Prompt-injection results are specific to the recorded synthetic experiments and are not generalizable performance guarantees.
-
-\- Model fallback or recommendation withholding must not be interpreted as proof that the underlying model resisted an attack.
-
-\- The official Phase 11 manifest, logs, and Phase 12 evaluations are not modified by interactive demo decisions.
-
-\- SHA-256 integrity was checked during project validation; the dashboard's normal replay view should not be treated as a comprehensive automatic integrity audit.
-
-
-
-\## Reproducibility
-
-
-
-Use the recorded manifest, experiment IDs, source-run references, model settings, and evaluation reports to reproduce the documented comparisons.
-
-
-
-Relevant evaluation reports are located under:
-
-
-
-`experiments/prompt\\\_injection/`
-
-
-
-The interactive dashboard is a presentation and review interface, not a replacement for the frozen experimental evaluation.
-
+See the [root README](../README.md) for final findings and [setup instructions](../docs/SETUP.md).
